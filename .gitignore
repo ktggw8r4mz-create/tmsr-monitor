@@ -1,0 +1,9 @@
+# 敏感配置：含 Telegram bot_token / chat_id，禁止上传
+config.json
+
+# 运行时产物与缓存
+logs/
+_shots/
+__pycache__/
+*.pyc
+.DS_Store

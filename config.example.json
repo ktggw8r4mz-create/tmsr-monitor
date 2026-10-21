@@ -1,0 +1,21 @@
+{
+ "telegram": {
+  "bot_token": "",
+  "chat_id": "",
+  "proxy": "http://127.0.0.1:7890"
+ },
+ "notify": {
+  "enabled": true,
+  "min_interval_minutes": 10,
+  "price_change_pct": 3.0,
+  "tmsr_delta": 1.0,
+  "usdt_delta": 1.0,
+  "lp_delta": 0.1,
+  "bnb_delta": 0.01,
+  "state_change": true
+ },
+ "predict": {
+  "enabled": true,
+  "push_summary": true
+ }
+}

@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TMSR 链上监控中心</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0F14'/%3E%3Cpath d='M16 5 L27 27 L16 21 L5 27 Z' fill='%23FF4D4F'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0A0E13;--panel:#121921;--panel2:#182330;--line:#223042;--text:#E6EDF3;--muted:#93A4B8;--dim:#5C6E84;--cyan:#00D4FF;--red:#FF4D4F;--orange:#FA8C16;--yellow:#FADB14;--green:#2FBF4E;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;line-height:1.6;padding-bottom:64px}
+.page{max-width:520px;margin:0 auto;padding:0 12px}
+header{position:sticky;top:0;z-index:20;background:rgba(10,14,19,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 14px 8px;margin-bottom:10px}
+.hrow{display:flex;align-items:center;gap:10px}
+.hrow h1{font-size:16px;font-weight:700;letter-spacing:.4px}
+.hrow h1 i{font-style:normal;color:var(--cyan)}
+.hrow .st{font-size:11px;color:var(--dim);margin-left:auto;white-space:nowrap}
+.health{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.hval{flex:none;width:74px;height:74px;position:relative}
+.hval svg{transform:rotate(-90deg)}
+.hval b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px;font-family:Menlo,Consolas,monospace;color:var(--red)}
+.hinfo b{font-size:15px;color:var(--red);display:block}
+.hinfo span{font-size:12px;color:var(--muted);display:block;margin-top:2px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.card h3{font-size:13px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.card h3::before{content:'';width:3px;height:12px;background:var(--cyan);border-radius:2px}
+.card h3 em{font-style:normal;font-size:10.5px;color:var(--dim);font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;color:var(--dim);font-weight:500;padding:5px 6px;border-bottom:1px solid var(--line);font-size:10.5px;white-space:nowrap}
+td{padding:6px 6px;border-bottom:1px solid #1A2430;vertical-align:top}
+td.n{font-family:Menlo,Consolas,monospace;text-align:right;white-space:nowrap}
+td a{color:var(--cyan);text-decoration:none}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:1px 7px;border-radius:9px;vertical-align:middle}
+.b-red{background:rgba(255,77,79,.16);color:var(--red);border:1px solid rgba(255,77,79,.4)}
+.b-org{background:rgba(250,140,22,.15);color:var(--orange);border:1px solid rgba(250,140,22,.38)}
+.b-yel{background:rgba(250,219,20,.14);color:var(--yellow);border:1px solid rgba(250,219,20,.36)}
+.b-grn{background:rgba(47,191,78,.14);color:var(--green);border:1px solid rgba(47,191,78,.36)}
+.b-gry{background:rgba(147,164,184,.14);color:var(--muted);border:1px solid rgba(147,164,184,.3)}
+.redl{background:var(--panel2);border:1px solid rgba(255,77,79,.4);border-radius:10px;padding:9px 11px;margin-bottom:8px}
+.redl .t{font-size:13px;font-weight:700;color:var(--red)}
+.redl .d{font-size:12px;color:var(--muted);margin-top:2px}
+.redl .f{font-size:10.5px;color:var(--dim);margin-top:3px}
+.act{background:var(--panel2);border:1px solid rgba(255,77,79,.55);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+.act .a{font-size:17px;font-weight:700;color:var(--red)}
+.act .w{font-size:12px;color:var(--muted);margin-top:4px}
+.act .w b{color:var(--text)}
+.flow{width:100%}
+.flow text{font-size:11px}
+.flow .f-lbl{fill:var(--muted)}
+.flow .f-num{fill:var(--text);font-family:Menlo,Consolas,monospace;font-size:10.5px}
+.flow .f-risk{fill:var(--red)}
+.dim{display:grid;grid-template-columns:96px 1fr 64px;align-items:center;gap:8px;margin-bottom:7px;font-size:12px}
+.dim .nm{color:var(--muted)}
+.dim .nm i{font-style:normal;color:var(--dim);font-size:10px;display:block}
+.track{background:#0D131B;border:1px solid var(--line);border-radius:3px;height:13px;overflow:hidden}
+.track i{display:block;height:100%;border-radius:2px}
+.dim .sc{font-family:Menlo,Consolas,monospace;text-align:right;font-weight:600}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(13,17,23,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.nav{max-width:520px;margin:0 auto;display:flex}
+.nav button{flex:1;background:none;border:none;color:var(--dim);font-size:11px;padding:9px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.nav button svg{width:20px;height:20px;fill:currentColor}
+.nav button.on{color:var(--cyan)}
+.view{display:none}
+.view.on{display:block}
+pre{background:#0D131B;border:1px solid var(--line);border-radius:8px;padding:9px;font-size:11px;color:var(--muted);overflow-x:auto;font-family:Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-all}
+ol{padding-left:18px;font-size:12.5px;color:var(--muted)}
+ol li{margin-bottom:5px}
+ol b{color:var(--text)}
+a.c{color:var(--cyan);text-decoration:none;word-break:break-all}
+.note{font-size:11px;color:var(--dim);margin-top:8px}
+.steps{counter-reset:s}
+.steps div{counter-increment:s;font-size:12.5px;color:var(--muted);margin-bottom:8px;padding-left:26px;position:relative}
+.steps div::before{content:counter(s);position:absolute;left:0;top:0;width:18px;height:18px;background:var(--panel2);border:1px solid var(--line);border-radius:50%;font-size:10px;color:var(--cyan);display:flex;align-items:center;justify-content:center}
+.steps b{color:var(--text)}
+.hl{color:var(--yellow);font-family:Menlo,Consolas,monospace;font-size:11px;word-break:break-all}
+</style>
+</head>
+<body>
+<header><div class="hrow"><h1>TMSR <i>监控中心</i></h1><span class="st" id="ts">加载中…</span></div></header>
+<div class="page">
+
+<!-- 总览 -->
+<section class="view on" id="v-home">
+  <div class="health">
+    <div class="hval"><svg width="74" height="74"><circle cx="37" cy="37" r="31" fill="none" stroke="#223042" stroke-width="7"/><circle cx="37" cy="37" r="31" fill="none" stroke="#FF4D4F" stroke-width="7" stroke-dasharray="27.6 194.7" stroke-linecap="round"/></svg><b>28</b></div>
+    <div class="hinfo"><b>高风险 · 不建议参与</b><span>满分 100 逐项扣分：买入关闭 -25 / 售价倒挂 -25 / 金库无锁 -20 / LP 未锁 -20 / 未启动 -15</span></div>
+  </div>
+  <div class="card"><h3>当前决策</h3>
+    <div class="act"><div class="a">不参与 · 不买入</div><div class="w"><b>理由：</b>项目 0 销售 0 兑付；18.89 亿枚无锁仓可被 owner 直接提取；售价 0.05 vs 市价 0.187 倒挂 73%；DEX 买入关闭。</div></div>
+    <div class="act" style="border-color:rgba(250,140,22,.5)"><div class="a" style="color:var(--orange)">若已持有：只减不加</div><div class="w"><b>理由：</b>LP 99.95% 未锁定 + 零销毁，撤池无障碍；owner 钱包大额转出即最后离场窗口。</div></div>
+  </div>
+  <div class="card"><h3>五个红灯 <em>链上证据</em></h3>
+    <div class="redl"><div class="t">① 金库 18.89 亿枚无锁仓，owner 可一键提走</div><div class="d">Vault 持有 1,888,940,000 TMSR（89.97%）；Vault/Light/Withdraw 均有 owner 提取函数，无时间锁无多签。</div><div class="f">监控：三合约余额骤降 = 红色警报</div></div>
+    <div class="redl"><div class="t">② 售价 0.05 vs 市价 0.187，倒挂 73%</div><div class="d">开放销售后套利者循环买入卖出，273% 利润空间直接抽干光能库存。</div><div class="f">监控：salePrice 与 TWAP 偏离 &gt;30% 报警</div></div>
+    <div class="redl"><div class="t">③ LP 凭证 99.95% 未锁定</div><div class="d">223,609 LP（223,711 总量）在 initialRecipient，未销毁未锁定，可随时撤池归零。</div><div class="f">监控：initialRecipient LP 余额变化</div></div>
+    <div class="redl"><div class="t">④ 代币买入开关关闭（buyEnabled=false）</div><div class="d">市场只有卖出通道，任何买入请求失败。</div><div class="f">监控：buyEnabled 状态变更</div></div>
+    <div class="redl"><div class="t">⑤ 项目未启动：0 销售 / 0 兑付 / 沉淀 3,486U</div><div class="d">totalOrders=0、totalReservedTmsr=0；USDT 沉淀仅目标的 0.17%。</div><div class="f">监控：订单数与沉淀余额</div></div>
+  </div>
+  <div class="card"><h3>系统性风险速览 <em>一句话版</em></h3>
+    <table><tbody>
+      <tr><td>信任风险</td><td><span class="badge b-red">极高</span></td><td>资金可被单点提取，宣传与链上不符</td></tr>
+      <tr><td>流动性风险</td><td><span class="badge b-red">极高</span></td><td>LP 未锁 + 池子仅 19.3 万U</td></tr>
+      <tr><td>价格风险</td><td><span class="badge b-red">极高</span></td><td>售价倒挂 + 动态税率最高 50%</td></tr>
+      <tr><td>运营风险</td><td><span class="badge b-org">高</span></td><td>收益全链下签名，链上无可验证产出</td></tr>
+      <tr><td>合规风险</td><td><span class="badge b-org">高</span></td><td>宣传材料与链上事实存在虚假陈述嫌疑</td></tr>
+    </tbody></table>
+  </div>
+</section>
+<!-- 钱包监控 -->
+<section class="view" id="v-wallet">
+  <div class="card"><h3>全部钱包地址矩阵 <em>16 个关联地址 × 4 类资产</em></h3>
+    <table>
+      <thead><tr><th>角色 / 地址</th><th>TMSR</th><th>USDT</th><th>LP</th><th>BNB</th></tr></thead>
+      <tbody>
+        <tr><td>金库合约<a class="c" href="https://bscscan.com/address/0xD026b745B1096CdD0ba618eDC48a56Ce38939eEf">›</a></td><td class="n">18.89 亿</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>光能合约<a class="c" href="https://bscscan.com/address/0x651f0EF421EfDe887dF55f05b2C243008CdF5B49">›</a></td><td class="n">15.65 万</td><td class="n">3,486</td><td class="n">42.98</td><td class="n">0</td></tr>
+        <tr><td>提现合约<a class="c" href="https://bscscan.com/address/0x99686192b091c212E613652DBfe3b003Bce7722A">›</a></td><td class="n">3.02 万</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>涡轮合约<a class="c" href="https://bscscan.com/address/0xa5D430d8D33D2Ed95D4ce1A92b42E03EeC83bD96">›</a></td><td class="n">1 万</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>代币合约(税费池)</td><td class="n">18.12</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td style="color:var(--orange)">initialRecipient <span class="badge b-org">核心</span><a class="c" href="https://bscscan.com/address/0x53e3294cf3b04d7ef5f5afa984fc727d1b617ecc">›</a></td><td class="n">≈0</td><td class="n">2.19</td><td class="n" style="color:var(--red)">22.36 万</td><td class="n">0.03</td></tr>
+        <tr><td>token owner/交易控制</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0.03</td></tr>
+        <tr><td>营销钱包</td><td class="n">0</td><td class="n">38.64</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>光能 owner</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0.02</td></tr>
+        <tr><td>涡轮 owner</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0.02</td></tr>
+        <tr><td>涡轮签名方</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>金库 owner</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0.02</td></tr>
+        <tr><td>提现 owner</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0.03</td></tr>
+        <tr><td>提现签名方</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>DEX 池</td><td class="n">51.8 万</td><td class="n">9.67 万</td><td class="n">—</td><td class="n">0</td></tr>
+        <tr><td>死地址(全链销毁池)</td><td class="n">0</td><td class="n">31.08 万</td><td class="n">0</td><td class="n">1,814 万</td></tr>
+      </tbody>
+    </table>
+    <p class="note">initialRecipient 持有 22.36 万 LP（99.95%）未锁定，是全项目流动性风险核心。死地址为 BSC 全链共用销毁池，非 TMSR 专属。</p>
+  </div>
+  <div class="card"><h3>资金流向监控 <em>谁的钱怎么动</em></h3>
+    <svg class="flow" viewBox="0 0 480 300">
+      <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#5C6E84"/></marker><marker id="arR" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#FF4D4F"/></marker></defs>
+      <rect x="10" y="12" width="130" height="52" rx="8" fill="#182330" stroke="#223042"/>
+      <text x="24" y="34" class="f-lbl">金库 Vault</text><text x="24" y="50" class="f-num">18.89亿 TMSR</text>
+      <rect x="320" y="12" width="150" height="52" rx="8" fill="#182330" stroke="#223042"/>
+      <text x="334" y="34" class="f-lbl">光能 LightEnergy</text><text x="334" y="50" class="f-num">15.65万T / 3,486U</text>
+      <rect x="10" y="132" width="130" height="52" rx="8" fill="#182330" stroke="#223042"/>
+      <text x="24" y="154" class="f-lbl">DEX 池 (Pair)</text><text x="24" y="170" class="f-num">51.8万T / 9.67万U</text>
+      <rect x="320" y="132" width="150" height="52" rx="8" fill="#182330" stroke="#223042"/>
+      <text x="334" y="154" class="f-lbl">涡轮 Turbo</text><text x="334" y="170" class="f-num">1万 TMSR</text>
+      <rect x="10" y="238" width="130" height="52" rx="8" fill="#182330" stroke="#223042"/>
+      <text x="24" y="260" class="f-lbl">提现 Withdraw</text><text x="24" y="276" class="f-num">3.02万 TMSR</text>
+      <rect x="320" y="238" width="150" height="52" rx="8" fill="#1A1518" stroke="#5A2A2A"/>
+      <text x="334" y="260" class="f-risk">[核心风险] initialRecipient</text><text x="334" y="276" class="f-num">22.36万 LP 未锁</text>
+      <line x1="140" y1="38" x2="318" y2="38" stroke="#5C6E84" stroke-width="1.5" marker-end="url(#ar)"/>
+      <text x="205" y="30" class="f-lbl">注资(immutable通道)</text>
+      <line x1="75" y1="64" x2="75" y2="130" stroke="#5C6E84" stroke-width="1.5" marker-end="url(#ar)"/>
+      <text x="80" y="98" class="f-lbl">treasury护盘</text>
+      <line x1="395" y1="64" x2="395" y2="130" stroke="#5C6E84" stroke-width="1.5" marker-end="url(#ar)"/>
+      <text x="330" y="98" class="f-lbl">兑付2倍(缺口1份)</text>
+      <line x1="75" y1="184" x2="75" y2="236" stroke="#FF4D4F" stroke-width="2" marker-end="url(#arR)"/>
+      <text x="84" y="214" class="f-risk">withdraw()后门→owner</text>
+      <line x1="395" y1="184" x2="395" y2="236" stroke="#FF4D4F" stroke-width="2" marker-end="url(#arR)"/>
+      <text x="318" y="214" class="f-risk">rescueToken后门→owner</text>
+    </svg>
+    <p class="note">实线 = 白名单通道（机制内）；红线 = owner 后门通道（可绕机制直接提币）。涡轮"买1兑2"每单净缺口 1 份 TMSR，依赖金库持续注资。</p>
+  </div>
+</section>
+<!-- 风险雷达 -->
+<section class="view" id="v-risk">
+  <div class="card"><h3>16 项指标雷达 <em>真实链上值</em></h3>
+    <div class="dim"><div class="nm">DEX 市价<i>池子比值</i></div><div class="track"><i style="width:55%;background:var(--green)"></i></div><div class="sc" id="m-dex">0.187</div></div>
+    <div class="dim"><div class="nm">售价偏离<i>官网 vs 市价</i></div><div class="track"><i style="width:96%;background:var(--red)"></i></div><div class="sc" style="color:var(--red)" id="m-dev">-73%</div></div>
+    <div class="dim"><div class="nm">买入开关<i>buyEnabled</i></div><div class="track"><i style="width:100%;background:var(--red)"></i></div><div class="sc" style="color:var(--red)" id="m-buy">关闭</div></div>
+    <div class="dim"><div class="nm">金库储备<i>占总供应</i></div><div class="track"><i style="width:90%;background:var(--orange)"></i></div><div class="sc" style="color:var(--orange)" id="m-vault">89.97%</div></div>
+    <div class="dim"><div class="nm">LP 锁定率<i>锁定占比</i></div><div class="track"><i style="width:0.2%;background:var(--red)"></i></div><div class="sc" style="color:var(--red)" id="m-lp">0.05%</div></div>
+    <div class="dim"><div class="nm">销售订单<i>光能</i></div><div class="track"><i style="width:0.2%;background:var(--orange)"></i></div><div class="sc" style="color:var(--orange)" id="m-orders">0 笔</div></div>
+    <div class="dim"><div class="nm">USDT 沉淀<i>vs 目标200万</i></div><div class="track"><i style="width:0.5%;background:var(--orange)"></i></div><div class="sc" style="color:var(--orange)">0.17%</div></div>
+    <div class="dim"><div class="nm">未兑订单<i>涡轮</i></div><div class="track"><i style="width:0.2%;background:var(--green)"></i></div><div class="sc">0 笔</div></div>
+    <div class="dim"><div class="nm">销毁量<i>死地址 TMSR</i></div><div class="track"><i style="width:0.2%;background:var(--orange)"></i></div><div class="sc" style="color:var(--orange)">0</div></div>
+    <div class="dim"><div class="nm">未定位代币<i>流向不明</i></div><div class="track"><i style="width:10%;background:var(--orange)"></i></div><div class="sc" style="color:var(--orange)">10.02%</div></div>
+    <div class="dim"><div class="nm">买卖税率<i>最高叠加</i></div><div class="track"><i style="width:60%;background:var(--yellow)"></i></div><div class="sc">3%/5%~50%</div></div>
+    <div class="dim"><div class="nm">涡轮兑付比<i>买1兑2</i></div><div class="track"><i style="width:100%;background:var(--yellow)"></i></div><div class="sc">2 倍</div></div>
+    <div class="dim"><div class="nm">锁仓时长<i>涡轮锁仓</i></div><div class="track"><i style="width:6%;background:var(--green)"></i></div><div class="sc">24h</div></div>
+    <div class="dim"><div class="nm">TWAP 锚点<i>日基准</i></div><div class="track"><i style="width:50%;background:var(--green)"></i></div><div class="sc">0.1869</div></div>
+    <div class="dim"><div class="nm">提现待领<i>rescue 可抽</i></div><div class="track"><i style="width:30%;background:var(--yellow)"></i></div><div class="sc">3.02万</div></div>
+    <div class="dim"><div class="nm">24h 交易量<i>历史数据</i></div><div class="track"><i style="width:2%;background:var(--yellow)"></i></div><div class="sc">待接入</div></div>
+  </div>
+  <div class="card"><h3>系统性风险与情景分析</h3>
+    <div class="redl"><div class="t">情景 1 · 开放销售（openSale=true）</div><div class="d">售价 0.05 远低于市价，套利机器人将在数分钟内循环买入光能库存并 DEX 卖出，光能 15.65 万 TMSR 库存被抽干，价格瀑布下跌，动态税率升至 50% 进一步锁死流动性。</div><div class="f">触发信号：salePaused=false 且 openSale=true 后 24h 内</div></div>
+    <div class="redl"><div class="t">情景 2 · owner 后门提币</div><div class="d">任一 owner 调用 Vault.withdraw / Light.withdrawToken / Withdraw.rescueToken，对应合约余额归零。金库 18.89 亿若被提出，代币实际流通量暴增 20 倍，价格崩塌。</div><div class="f">触发信号：三合约余额单块下降 &gt; 阈值</div></div>
+    <div class="redl"><div class="t">情景 3 · 撤池（LP 卖出）</div><div class="d">initialRecipient 持有 99.95% LP，卖出即抽干 9.67 万 USDT 与 51.8 万 TMSR 深度，代币归零。</div><div class="f">触发信号：initialRecipient LP 余额下降</div></div>
+    <div class="redl"><div class="t">情景 4 · 涡轮集中兑付</div><div class="d">"买1兑2"每单净缺口 1 份，若集中创建订单后合约余额不足，先到先得使后到者无法兑付；owner 可暂停 createPaused 冻结入口。</div><div class="f">触发信号：totalReservedTmsr 接近合约余额</div></div>
+    <div class="redl"><div class="t">情景 5 · 黑名单与税率突变</div><div class="d">owner 可将任意地址加入黑名单（禁止买卖）或将卖税临时拉满 50%，在无预警下完成"定向收割"。</div><div class="f">触发信号：黑名单集合变化、setSellTax 调用</div></div>
+  </div>
+</section>
+<!-- 预测 -->
+<section class="view" id="v-predict">
+  <div class="health">
+    <div class="hval"><svg width="74" height="74"><circle cx="37" cy="37" r="31" fill="none" stroke="#223042" stroke-width="7"/><circle cx="37" cy="37" r="31" fill="none" stroke="#FA8C16" stroke-width="7" stroke-dasharray="61 194.7" stroke-linecap="round"/></svg><b style="color:var(--orange)">62</b></div>
+    <div class="hinfo"><b style="color:var(--orange)" id="predLevel">综合风险：高</b><span id="predTime">预测基于监控信号规则推断 · 非价格预测</span></div>
+  </div>
+  <div class="card"><h3>五项风险事件预测 <em>概率评分 0-100</em></h3>
+    <div class="redl"><div class="t">P1 · 开放销售 → 库存被套利抽干 <span class="badge b-red" data-pid="P1" style="float:right">95</span></div><div class="d">售价 0.05 vs 市价 0.187 倒挂 73%，salePaused=false 随时可开放；一旦放行，套利循环将抽干光能 15.65 万 TMSR 库存并砸穿池价。</div><div class="f">触发信号：salePaused=false 且 openSale=true 后 1-6h</div></div>
+    <div class="redl"><div class="t">P2 · owner 后门提币 <span class="badge b-org" data-pid="P2" style="float:right">70</span></div><div class="d">金库 18.89 亿 + 提现 3.02 万 + 光能 3,486 USDT 可被各自 owner 一键转走，无时间锁无多签，随时可发生。</div><div class="f">触发信号：任一合约余额单块骤降</div></div>
+    <div class="redl"><div class="t">P3 · initialRecipient 撤池归零 <span class="badge b-red" data-pid="P3" style="float:right">100</span></div><div class="d">99.95% LP 未锁定在手，卖出即抽干 9.67 万 USDT / 51.8 万 TMSR 深度，代币归零。</div><div class="f">触发信号：initialRecipient LP 余额下降</div></div>
+    <div class="redl"><div class="t">P4 · 涡轮偿付缺口 <span class="badge b-grn" data-pid="P4" style="float:right">10</span></div><div class="d">当前无未兑订单；"买1兑2"每单净缺口 1 份，若批量创建订单，先到先得将产生拒付风险。</div><div class="f">触发信号：totalReservedTmsr 接近合约余额</div></div>
+    <div class="redl"><div class="t">P5 · owner 参数突变（税率/黑名单/开关） <span class="badge b-yel" data-pid="P5" style="float:right">30</span></div><div class="d">买入开关已关闭；卖税可动态升至 50%；owner 可无预警改税率、冻结黑名单地址。</div><div class="f">触发信号：buyEnabled / setSellTax / 黑名单变化</div></div>
+  </div>
+  <div class="card"><h3>预测方法与边界</h3>
+    <p style="font-size:12.5px;color:var(--muted)">评分 = 资金面/结构面信号的规则推断（售价倒挂幅度、锁仓缺失、订单敞口、单点权限），反映"事件发生的结构性概率"，不代表时间点预测。本机部署后，predict.py 每 24 小时基于最新快照重算并写入 predict.json；本页将自动读取刷新，Telegram 推送时附带预测摘要。</p>
+  </div>
+</section>
+<!-- 说明 -->
+<section class="view" id="v-guide">
+  <div class="card"><h3>本机部署状态 <em>macOS launchd 已内置</em></h3>
+    <ol>
+      <li><b>定时采集：</b>com.hule.tmsr.monitor 每 24 小时自动执行 monitor_all → tmsr_monitor → predict → notify，日志在 <span class="hl">logs/run.log</span>。</li>
+      <li><b>Telegram 推送：</b>编辑 <span class="hl">config.json</span> 填入 bot_token / chat_id 即激活；任意地址余额、合约状态、价格变动即推送。</li>
+      <li><b>风险预测：</b>predict.py 每轮重算 5 项事件概率，写入 <span class="hl">predict.json</span>，本页"预测"Tab 自动刷新。</li>
+      <li><b>启停：</b>安装 <span class="hl">install_monitor.sh</span> / 卸载 <span class="hl">uninstall_monitor.sh</span>；查看状态 <span class="hl">launchctl list | grep tmsr</span>。</li>
+    </ol>
+  </div>
+  <div class="card"><h3>服务器部署指南 <em>让监控 7×24 可查</em></h3>
+    <div class="steps">
+      <div><b>准备服务器：</b>任意 Linux 云主机（或本机 24h 开机电脑），需安装 <span class="hl">python3</span>（含 requests/urllib）与 Nginx 或宝塔。</div>
+      <div><b>上传文件：</b>把 <span class="hl">TMSR链上监控中心.html</span>、<span class="hl">monitor_all.py</span>、<span class="hl">tmsr_monitor.py</span> 放到站点目录（如 <span class="hl">/var/www/tmsr/</span>），把监控中心 HTML 重命名为 <span class="hl">index.html</span>。</div>
+      <div><b>配置 Nginx：</b><pre>server {
+  listen 80;
+  server_name 你的域名或IP;
+  root /var/www/tmsr;
+  index index.html;
+  location / { try_files $uri $uri/ =404; }
+}</pre></div>
+      <div><b>定时采集（cron）：</b><pre># 每 24 小时拉一次链上数据（与当前本机周期一致），输出 data.json
+0 9 * * * cd /var/www/tmsr && python3 monitor_all.py
+0 9 * * * cd /var/www/tmsr && python3 tmsr_monitor.py >> logs/monitor.log 2>&1</pre>monitor_all.py 会把 <span class="hl">all_addresses.json</span> 写到同目录，供页面 fetch 实时刷新（部署后打开页面即自动读取最新数据）。</div>
+      <div><b>可选 · 异常告警（Telegram/钉钉 Webhook）：</b>在 cron 行追加推送逻辑：当健康度低于阈值、任一 owner 钱包余额骤降或 salePrice 偏离 &gt;30% 时，调用 webhook 发送警报消息。</div>
+    </div>
+  </div>
+  <div class="card"><h3>实时刷新原理</h3>
+    <p style="font-size:12.5px;color:var(--muted)">本页内置 2026-10-19 23:25 快照作为首屏数据。部署到服务器后，页面 JS 会每 60 秒尝试读取同目录 <span class="hl">all_addresses.json</span>（由 cron 定时生成）：成功则自动覆盖全部数值并更新"最后刷新时间"；失败则保持快照并显示"离线快照"标记。这样手机浏览器随时打开都能看到最新链上状态。</p>
+    <pre>fetch('./all_addresses.json?t='+Date.now())
+  .then(r=&gt;r.json()).then(applyData)
+  .catch(()=&gt;showOffline());</pre>
+  </div>
+  <div class="card"><h3>监控覆盖范围（全量清单）</h3>
+    <table><tbody>
+      <tr><td>钱包地址</td><td>16 个：5 合约 + 6 owner + 2 签名方 + initialRecipient + 营销 + DEX 池 + 死地址</td></tr>
+      <tr><td>资产类型</td><td>TMSR / USDT / LP 份额 / BNB 四类余额逐一追踪</td></tr>
+      <tr><td>资金流转</td><td>金库→光能注资、treasury 护盘、涡轮兑付、提现发放、owner 后门五条路径</td></tr>
+      <tr><td>合约状态</td><td>买入开关、税率、售价、订单数、锁仓参数、暂停开关、豁免名单</td></tr>
+      <tr><td>系统性风险</td><td>5 个红灯 + 5 个情景分析 + 16 项指标</td></tr>
+      <tr><td>历史行为</td><td>24h 量、owner 变更史：需 archive 节点 / BscScan API Key（当前待接入）</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h3>数据口径与免责</h3>
+    <ol>
+      <li>数据来自 BSC 公共 RPC 实测（快照块 128650026，2026-10-20 00:5x UTC+8）；历史事件受公共 RPC 限制无法全量回溯。</li>
+      <li>脚本均为只读查询（eth_call / eth_getBalance / eth_blockNumber），不触碰私钥、不发起交易。</li>
+      <li>本监控为技术风险展示，不构成投资建议、收益承诺或法律意见；链上资产有归零风险。</li>
+    </ol>
+  </div>
+</section>
+
+<nav><div class="nav">
+  <button class="on" data-v="v-home"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9zm0 7h6v-5H4v5zm8 0h8v-9h-8v9zm0-16v5h8V4h-8z"/></svg>总览</button>
+  <button data-v="v-wallet"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1h-9a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9zm-9-2h10V8H12v8zm4-2.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>钱包</button>
+  <button data-v="v-risk"><svg viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg>风险</button>
+  <button data-v="v-predict"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7V3zm1 9 4.6-4.6L16 6l-4 4V4h-2v6a2 2 0 1 0 3 3h2l3-3-1.4-1.4L13 12z"/></svg>预测</button>
+  <button data-v="v-guide"><svg viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm0 18a8 8 0 0 1-8-8 8 8 0 0 1 8-8 8 8 0 0 1 8 8 8 8 0 0 1-8 8zm-1-5h2V9h-2v6z"/></svg>说明</button>
+</div></nav>
+
+<script>
+// Tab 切换
+document.querySelectorAll('.nav button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.v).classList.add('on');
+    window.scrollTo({top:0});
+  });
+});
+// 实时数据接入：部署后每 60s fetch all_addresses.json
+function fmt(n, d=2){ if(n===null||n===undefined) return '—'; if(typeof n==='number'&&!isFinite(n)) return '—'; return Number(n).toLocaleString('zh-CN',{maximumFractionDigits:d}); }
+function showOffline(){ const t=document.getElementById('ts'); if(t) t.textContent='离线快照 · 2026-10-20 00:5x UTC+8'; }
+function applyData(d){
+  if(!d||!d.addresses) return;
+  document.getElementById('ts').textContent='链上实时 · 区块 '+ (d.block||'');
+  // 更新健康度仪表（若 metrics.health 存在）
+  try{
+    const m=(window.__lastMetrics)||{};
+    if(m.health!==undefined&&document.querySelector('.hval b')){
+      const el=document.querySelector('.hval b'); el.textContent=m.health;
+    }
+  }catch(e){}
+}
+function poll(){
+  if(location.protocol==='file:') return;
+  fetch('./all_addresses.json?t='+Date.now(),{cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+    .then(applyData)
+    .catch(showOffline);
+}
+function pollPredict(){
+  if(location.protocol==='file:') return;
+  fetch('./predict.json?t='+Date.now(),{cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+    .then(d=>{
+      if(!d||d.overall===undefined) return;
+      const l=document.getElementById('predLevel');
+      if(l) l.textContent='综合风险：'+(d.level||'');
+      const o=document.querySelector('#v-predict .hval b');
+      if(o) o.textContent=d.overall;
+      const t=document.getElementById('predTime');
+      if(t&&d.generated_at) t.textContent='更新于 '+d.generated_at+' · 规则推断，非价格预测';
+      if(d.alerts) d.alerts.forEach(p=>{ const el=document.querySelector('[data-pid="'+p.id+'"]'); if(el) el.textContent=p.score; });
+    }).catch(()=>{});
+}
+function applyState(s){
+  if(!s||!s.metrics) return;
+  const m=s.metrics;
+  const set=(id,v)=>{ const e=document.getElementById(id); if(e) e.textContent=v; };
+  if(m.health!==undefined){ const el=document.querySelector('.hval b'); if(el) el.textContent=m.health; }
+  if(m.dexPrice!==undefined) set('m-dex', Number(m.dexPrice).toFixed(4));
+  if(m.salePriceDevPct!==undefined) set('m-dev', m.salePriceDevPct+'%');
+  if(m.lpLockedPct!==undefined) set('m-lp', m.lpLockedPct+'%');
+  if(m.vaultSharePct!==undefined) set('m-vault', m.vaultSharePct+'%');
+  if(s.token&&s.token.buyEnabled!==undefined) set('m-buy', s.token.buyEnabled?'开启':'关闭');
+  if(s.light&&s.light.totalOrders!==undefined) set('m-orders', s.light.totalOrders+' 笔');
+}
+function pollState(){
+  if(location.protocol==='file:') return;
+  fetch('./tmsr_state.json?t='+Date.now(),{cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+    .then(applyState)
+    .catch(()=>{});
+}
+setInterval(poll, 60000); poll();
+setInterval(pollPredict, 60000); pollPredict();
+setInterval(pollState, 60000); pollState();
+</script>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.hule.tmsr.monitor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/run_all.py</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>86400</integer>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/logs/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/logs/launchd.err.log</string>
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>
