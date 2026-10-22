@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.hule.tmsr.web</string>
+    <string>com.hubayi.tmsr.web</string>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
@@ -13,7 +13,7 @@
         <string>--bind</string>
         <string>127.0.0.1</string>
         <string>--directory</string>
-        <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型</string>
+        <string>/Users/hubayi/Doubao/chats/2026-10-22/new-chat-1/TMSR监控模型</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
@@ -23,8 +23,8 @@
         <false/>
     </dict>
     <key>StandardOutPath</key>
-    <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/logs/web.out.log</string>
+    <string>/Users/hubayi/Doubao/chats/2026-10-22/new-chat-1/TMSR监控模型/logs/web.out.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/logs/web.err.log</string>
+    <string>/Users/hubayi/Doubao/chats/2026-10-22/new-chat-1/TMSR监控模型/logs/web.err.log</string>
 </dict>
 </plist>

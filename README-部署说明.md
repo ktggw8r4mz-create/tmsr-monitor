@@ -6,14 +6,14 @@
 
 浏览器打开：**http://127.0.0.1:8017**
 
-- 本机常驻 HTTP 服务（`com.hule.tmsr.web`，开机自启，仅本机可访问）
+- 本机常驻 HTTP 服务（`com.hubayi.tmsr.web`，开机自启，仅本机可访问）
 - 页面每 60 秒自动读取最新 `all_addresses.json / tmsr_state.json / predict.json`，指标、健康度、预测评分实时刷新
 - 手机想访问：把浏览器地址换成 Mac 的局域网 IP（如 http://192.168.x.x:8017，需把 plist 的 --bind 改为 0.0.0.0 后重装）
-- 端口冲突可改：编辑 `com.hule.tmsr.web.plist` 的 8017 后 `bash install_web.sh` 重装
+- 端口冲突可改：编辑 `com.hubayi.tmsr.web.plist` 的 8017 后 `bash install_web.sh` 重装
 
 ## 一、当前运行状态
 
-- 定时任务：`com.hule.tmsr.monitor`（已加载运行，每 24 小时执行一次）
+- 定时任务：`com.hubayi.tmsr.monitor`（已加载运行，每 24 小时执行一次）
 - 执行链路（每 24 小时）：monitor_all（16 地址×4 资产快照）→‖ tmsr_monitor（16 项指标，并行）→ predict（5 项风险预测）→ notify（变动推送）
 - 全部为只读查询（eth_call / eth_getBalance），不触碰私钥、不发起交易
 - 日志：`logs/run.log`（每步成败）、`logs/launchd.out.log` / `logs/launchd.err.log`
@@ -55,7 +55,7 @@ bash install_monitor.sh
 常见问题：
 - `run.log` 显示某步 FAIL/TIMEOUT：多为公共 RPC 限流，下一轮会自动重试；持续失败再检查网络。
 - 推送未收到：确认 token/chat_id 已填、机器人已 /start 过、`notify.log` 中推送结果。
-- 想更密/更疏：修改 `com.hule.tmsr.monitor.plist` 的 StartInterval（秒）后重装。
+- 想更密/更疏：修改 `com.hubayi.tmsr.monitor.plist` 的 StartInterval（秒）后重装。
 
 ## 五、监控覆盖（全量清单）
 

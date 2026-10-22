@@ -3,20 +3,20 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.hule.tmsr.monitor</string>
+    <string>com.hubayi.tmsr.monitor</string>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/run_all.py</string>
+        <string>/Users/hubayi/Doubao/chats/2026-10-22/new-chat-1/TMSR监控模型/run_all.py</string>
     </array>
     <key>StartInterval</key>
     <integer>1800</integer>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/logs/launchd.out.log</string>
+    <string>/Users/hubayi/Doubao/chats/2026-10-22/new-chat-1/TMSR监控模型/logs/launchd.out.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/logs/launchd.err.log</string>
+    <string>/Users/hubayi/Doubao/chats/2026-10-22/new-chat-1/TMSR监控模型/logs/launchd.err.log</string>
     <key>ProcessType</key>
     <string>Background</string>
 </dict>
