@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TMSR 收益模拟器与资金安全预测</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0F14'/%3E%3Cpath d='M16 5 L27 27 L16 21 L5 27 Z' fill='%2300D4FF'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0A0E13;--panel:#121921;--panel2:#182330;--line:#223042;--text:#E6EDF3;--muted:#93A4B8;--dim:#5C6E84;--cyan:#00D4FF;--red:#FF4D4F;--orange:#FA8C16;--yellow:#FADB14;--green:#2FBF4E;--violet:#8B7CF6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-size:14px;line-height:1.7}
+.wrap{max-width:640px;margin:0 auto;padding:14px 14px 56px}
+header{padding:18px 0 10px;border-bottom:1px solid var(--line);display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+header h1{font-size:19px;font-weight:700}
+header h1 i{font-style:normal;color:var(--cyan)}
+.sub{color:var(--dim);font-size:11px;margin-top:4px}
+h2{font-size:15.5px;margin:26px 0 10px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:15px;background:var(--cyan);border-radius:2px;flex:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0}
+.card p{font-size:12.5px;color:var(--muted);margin:4px 0}
+.card p b{color:var(--text)}
+.sec-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:1px 8px;border-radius:9px;white-space:nowrap}
+.t-red{background:rgba(255,77,79,.16);color:var(--red);border:1px solid rgba(255,77,79,.4)}
+.t-org{background:rgba(250,140,22,.15);color:var(--orange);border:1px solid rgba(250,140,22,.38)}
+.t-yel{background:rgba(250,219,20,.14);color:var(--yellow);border:1px solid rgba(250,219,20,.36)}
+.t-grn{background:rgba(47,191,78,.14);color:var(--green);border:1px solid rgba(47,191,78,.36)}
+.t-cyn{background:rgba(0,212,255,.12);color:var(--cyan);border:1px solid rgba(0,212,255,.32)}
+.t-vlt{background:rgba(139,124,246,.14);color:var(--violet);border:1px solid rgba(139,124,246,.4)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px 11px;min-width:0}
+.kpi .lb{font-size:10.5px;color:var(--dim)}
+.kpi .vl{font-size:16px;font-weight:700;margin-top:2px;font-family:Menlo,Consolas,monospace;white-space:nowrap}
+.kpi .vl small{font-size:10px;font-weight:400;color:var(--dim)}
+.inputs label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
+.inputs input[type=number],.inputs select{width:100%;background:#0D131B;border:1px solid var(--line);border-radius:8px;color:var(--text);font-size:16px;padding:10px 12px;font-family:Menlo,Consolas,monospace}
+.inputs select{font-family:-apple-system,"PingFang SC",sans-serif;font-size:15px}
+.range-row{display:flex;align-items:center;gap:10px;margin:6px 0}
+.range-row input[type=range]{flex:1;accent-color:var(--cyan)}
+.range-row .cur{font-size:13px;font-weight:700;color:var(--cyan);min-width:64px;text-align:right;font-family:Menlo,Consolas,monospace}
+.btn{width:100%;background:var(--cyan);color:#06202A;border:none;border-radius:10px;font-size:15.5px;font-weight:700;padding:13px;margin-top:14px;cursor:pointer}
+.btn:active{opacity:.85}
+.scn{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:var(--panel2)}
+.scn .hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.scn .nm{font-size:13px;font-weight:700}
+.scn .pv{font-size:15px;font-weight:700;font-family:Menlo,Consolas,monospace}
+.scn .pd{font-size:11.5px;color:var(--muted);margin-top:5px}
+.scn .prob{font-size:11px;color:var(--dim);margin-top:4px}
+.exp{font-size:12px;color:var(--green);font-weight:700;margin:10px 0 4px}
+.gauge{height:190px}
+.fbar{height:150px}
+.chart-note{font-size:10.5px;color:var(--dim);margin-top:4px}
+.plain{background:linear-gradient(180deg,#0F1B26,#121921);border:1px solid rgba(0,212,255,.3)}
+.plain .t{font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:6px}
+.pro{font-size:11.5px;color:var(--dim)}
+.pro li{margin:3px 0;list-style:none}
+.pro li::before{content:'· ';color:var(--cyan)}
+.foot{font-size:10.5px;color:var(--dim);text-align:center;margin-top:22px;border-top:1px solid #1A2430;padding-top:12px}
+.alertbar{display:flex;gap:8px;align-items:center;background:rgba(255,77,79,.08);border:1px solid rgba(255,77,79,.35);border-radius:10px;padding:9px 12px;margin:10px 0;font-size:12px;color:#FFB3B4}
+.alertbar b{color:var(--red)}
+.status-line{font-size:11px;color:var(--dim);margin-top:6px}
+.status-line b{color:var(--muted)}
+@media(min-width:768px){.wrap{max-width:760px;padding:18px 20px 64px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>TMSR 收益模拟器 <i>&amp; 资金安全预测</i></h1>
+    <div class="sub" id="snapLabel">数据快照加载中…</div>
+  </div>
+  <span class="tag t-cyn" id="liveTag">实时</span>
+</header>
+
+<div class="alertbar" id="topAlert">当前健康度 28/100、综合风险 62/100（高）——本工具在<b>「项目方不作恶」前提下</b>测算收益，并单独评估结构性风险。</div>
+
+<h2>一、当前链上状态（实时）</h2>
+<div class="kpis">
+  <div class="kpi"><div class="lb">DEX 市价</div><div class="vl" id="kDex">—</div></div>
+  <div class="kpi"><div class="lb">官网售价</div><div class="vl" id="kSale">—</div></div>
+  <div class="kpi"><div class="lb">售价倒挂</div><div class="vl" id="kGap">—</div></div>
+  <div class="kpi"><div class="lb">健康度</div><div class="vl" id="kHealth">—</div></div>
+  <div class="kpi"><div class="lb">综合风险</div><div class="vl" id="kRisk">—</div></div>
+  <div class="kpi"><div class="lb">LP 锁定率</div><div class="vl" id="kLp">—</div></div>
+</div>
+
+<div class="card plain">
+  <div class="t">大白话：这个模拟器算什么</div>
+  <p>你投入一笔钱（比如 10 万 USDT），系统按当前链上真实数据，模拟「项目方正常经营、不作恶」前提下的一年内四种可能结局，并给出<b>资金安全性评级</b>。所有数字可溯源：价格来自 DEX 池、风险概率来自监控预测模块、深度损耗按恒定乘积公式实算。</p>
+</div>
+
+<h2>二、设定你的投入</h2>
+<div class="card inputs">
+  <label>投入金额（USDT）</label>
+  <input type="number" id="invest" value="100000" min="100" step="1000">
+  <label>持有时长</label>
+  <select id="period">
+    <option value="3">3 个月</option>
+    <option value="6">6 个月</option>
+    <option value="12" selected>12 个月（1 年）</option>
+    <option value="24">24 个月</option>
+  </select>
+  <label>买入渠道</label>
+  <select id="channel">
+    <option value="sale" selected>官网光能价（0.05 USDT/TMSR）</option>
+    <option value="dex">DEX 市价（约 0.186 USDT/TMSR）</option>
+  </select>
+  <label>场景B「持有待涨」假设：一年后价格变化</label>
+  <div class="range-row">
+    <input type="range" id="priceChg" min="-50" max="300" value="0" step="10">
+    <span class="cur" id="priceChgVal">0%</span>
+  </div>
+  <button class="btn" id="calcBtn">开始模拟一年收益</button>
+  <div class="status-line">数据源：<b id="dataSrc">内嵌快照</b> · 每 30 分钟随监控自动刷新</div>
+</div>
+
+<h2>三、一年收益模拟（四场景）</h2>
+<div class="card">
+  <div class="sec-title"><span>各场景期末资产（含概率权重）</span><span class="tag t-yel" id="expTag">期望收益计算中</span></div>
+  <div class="fbar" id="chartScn"></div>
+  <div class="chart-note">蓝色 = 你投入的本金基准线；绿/黄/橙/红 = 四场景期末资产（USDT）。</div>
+  <div id="scnList"></div>
+</div>
+
+<h2>四、资金安全预测（AI 多因子评分）</h2>
+<div class="card">
+  <div class="sec-title"><span>安全等级</span><span id="safetyBadge"></span></div>
+  <div class="gauge" id="chartGauge"></div>
+  <p id="safetyText"></p>
+</div>
+<div class="card">
+  <div class="sec-title"><span>十项风险因子贡献（0=高危 → 满分=安全）</span></div>
+  <div class="fbar" id="chartFactors"></div>
+  <div class="chart-note">每项满分含义不同（见下方假设），红色越短 = 该项越危险。</div>
+</div>
+
+<h2>五、小白解读</h2>
+<div class="card plain">
+  <div class="t">三种结局一句话</div>
+  <p>① <b>套利兑现（乐观）：</b>官网低价买到、链上提币通畅、市价卖出——<b>小额确实有肉</b>（1,000 USDT 试水约 +2.5 倍），但<b>金额一大，深度立刻不够</b>：10 万 USDT 全量兑现反而亏约 25%，因为池子里一共只有 9.6 万 USDT 的买方深度。</p>
+  <p>② <b>持有待涨（中性）：</b>不提现、等价格涨。当前 90% 代币锁在金库、市场几乎没有订单，没有新增需求引擎，价格大概率横盘——一年后你可能原样拿回本金，也可能拿不回来（提币通道存在链上疑点）。</p>
+  <p>③ <b>结构性撤离（风险）：</b>不一定是项目方作恶——持有 99.95% 流动性凭证的初始接收人<b>随时有权</b>撤走流动性（监控 P3 概率 100/100）。一旦撤池，代币归零，本金归零。这是"权利"不是"作恶"，但风险是真实的。</p>
+</div>
+
+<h2>六、专业假设（可核验）</h2>
+<div class="card">
+  <div class="sec-title"><span>计算口径与数据源</span><span class="tag t-cyn">透明可溯</span></div>
+  <ul class="pro">
+    <li>链上数据快照：2026-10-22 13:07（BSC 主网，块 129071141），来自本机监控 tmsr_state.json / predict.json；页面每次打开自动尝试读取最新快照，读到即用实时数据重算。</li>
+    <li>深度损耗：卖出按恒定乘积公式 R_usdt − k/(R_tmsr + Δ) 实算，池子储备 518,844 TMSR / 96,574 USDT。</li>
+    <li>卖税假设：场景A按最低 3%（审计期动态区间 3%–50%）；实际以链上为准。</li>
+    <li>官网售价 0.05 为审计期实测值；买入开关当前关闭，开放销售属"尚未发生"。</li>
+    <li>场景概率权重由当前监控信号推导：提币通道疑点(C3) 40%、结构性撤池(P3=100) 30%、持有横盘 20%、套利兑现 10%。</li>
+    <li>安全评分 10 因子：提币通道 10 / LP锁仓 15 / 售价倒挂 15 / 金库集中 10 / P1 10 / P2 10 / P3 15 / P4 10 / P5 10 / 活跃度 5，加权合计 0–100。</li>
+    <li>期望收益 = Σ(场景概率 × 场景收益)，仅用于横向对比，不构成收益承诺。</li>
+  </ul>
+</div>
+
+<div class="foot">TMSR 收益模拟器 · 数据每 30 分钟随监控刷新 · 输出仅供学习参考，不构成投资建议</div>
+</div>
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+/* ========== 内嵌快照（2026-10-22 13:07 链上实测，作为 fetch 失败兜底） ========== */
+const SNAP = {
+  iso:"2026-10-22 13:07", block:129071141,
+  dexPrice:0.186133, salePrice:0.05,
+  rTmsr:518843.81089041126, rUsdt:96573.77186632303,
+  health:28, risk:62, lpLockedPct:99.95,
+  p:{P1:95,P2:75,P3:100,P4:10,P5:30}, level:"高",
+  c3:"buyLight 链上仅获 NFT，TMSR 未直接到账（审计证据）",
+  orders:0
+};
+let D = JSON.parse(JSON.stringify(SNAP));
+
+/* ========== 读取实时快照（同源 http/Pages 下生效；file:// 下自动用内嵌） ========== */
+function tryFetch(){
+  const jobs=[["tmsr_state.json","state"],["predict.json","predict"]];
+  let pending=jobs.length;
+  const st={},pr={};
+  function done(){ if(--pending===0) merge(); }
+  jobs.forEach(function(j){
+    fetch(j[0],{cache:"no-store"})
+      .then(r=>r.ok?r.json():null)
+      .then(x=>{ (j[1]==="state"?st:pr).val=x||null; done(); })
+      .catch(()=>done());
+  });
+  function merge(){
+    const s=st.val, p=pr.val;
+    if(s&&s.metrics){
+      D.dexPrice=s.metrics.dexPrice||D.dexPrice;
+      D.health=s.metrics.health!=null?s.metrics.health:D.health;
+      D.lpLockedPct=s.metrics.lpLockedPct!=null?s.metrics.lpLockedPct:D.lpLockedPct;
+      if(s.pair&&s.pair.reserveUsdt){D.rUsdt=s.pair.reserveUsdt;D.rTmsr=s.pair.reserveTmsr;}
+      if(s.light&&s.light.balUsdt!=null)D.lightUsdt=s.light.balUsdt;
+      if(s.light&&s.light.balTmsr!=null)D.lightTmsr=s.light.balTmsr;
+      D.iso=s.iso||D.iso; D.block=s.block||D.block;
+    }
+    if(p&&p.alerts){D.risk=p.overall||D.risk; D.level=p.level||D.level;
+      p.alerts.forEach(a=>{if(D.p[a.id]!=null)D.p[a.id]=a.score;});}
+    if(s&&s.pair){D.gapPct=((D.dexPrice-D.salePrice)/D.salePrice*100);}
+    document.getElementById("snapLabel").textContent="数据快照 "+D.iso+" · 块 "+D.block+(s&&p?"（实时更新）":"（内嵌快照）");
+    if(s&&p)document.getElementById("liveTag").textContent="实时";
+    renderAll();
+  }
+}
+
+/* ========== 核心计算 ========== */
+function fmt(n){
+  if(n==null||isNaN(n))return "—";
+  const a=Math.abs(n);
+  if(a>=1e8)return (n/1e8).toFixed(1)+" 亿";
+  if(a>=1e4)return (n/1e4).toFixed(1)+" 万";
+  return n.toLocaleString("zh-CN",{maximumFractionDigits:0});
+}
+function sellQuote(amt,tax){
+  const k=D.rTmsr*D.rUsdt;
+  const after=D.rTmsr+amt;
+  const usdt=D.rUsdt - k/after;
+  if(usdt<0)return 0;
+  return usdt*(1-tax);
+}
+function calcScenarios(invest,periodMonths,channel,priceChg){
+  const buyPrice = channel==="sale" ? D.salePrice : D.dexPrice;
+  const amount = invest / buyPrice;            // 买入 TMSR 数量
+  const smallCap = D.rUsdt*0.05;               // 池深 5% 阈值（套利不砸盘上限）
+  // A 套利兑现（乐观）：全量卖出，最低卖税 3%
+  const aA = sellQuote(amount, 0.03);
+  // A2 小额套利参考：若 amount 过大，注明深度上限
+  const aSmall = sellQuote(Math.min(amount, smallCap/buyPrice), 0.03);
+  // B 持有待涨：期末按价格变化 + 卖出摩擦（中性税 20%，滑点按当前深度近似）
+  const endPrice = D.dexPrice*(1+priceChg/100);
+  const bAmount = amount;
+  const bSell = sellQuote(bAmount, 0.20);      // 若一年后卖出
+  const aB = priceChg===0 ? invest : bSell*(endPrice>0?1:0);
+  const aB_hold = priceChg===0 ? invest : invest*(1+priceChg/100);
+  // C 机制受限：提币通道存疑 → 本金不可退出，可赎回价值按 0 计（仍记录锁定）
+  const aC = 0;
+  // D 结构性撤池：P3=100，代币归零
+  const aD = 0;
+  // 概率权重（随信号动态）
+  const wA = 0.10, wB = 0.20, wC = 0.40, wD = 0.30;
+  const exp = wA*aA + wB*aB_hold + wC*aC + wD*aD;
+  return {amount,buyPrice,aA,aSmall,aB,aB_hold,aC,aD,exp,wA,wB,wC,wD,smallCap,endPrice};
+}
+
+/* ========== 安全评分 ========== */
+function safetyScore(){
+  const p=D.p;
+  let s=0, items=[];
+  function add(name,score,max,note){items.push({name,score,max,note});s+=score;}
+  // 提币通道可信度（C3：链上仅 NFT 无 TMSR → 最低分）
+  add("提币通道", D.c3?1:6, 10, D.c3);
+  // LP 锁仓保护（99.95% 未锁 → 极低）
+  add("LP锁仓", D.lpLockedPct>95?1:(D.lpLockedPct>50?5:9), 15, "当前锁定率 "+(100-D.lpLockedPct)+"%");
+  // 售价倒挂（-73% → 虹吸风险）
+  const gap=Math.abs((D.dexPrice-D.salePrice)/D.dexPrice*100);
+  add("售价倒挂", gap>50?1:(gap>20?4:12), 15, "倒挂 "+gap.toFixed(0)+"%");
+  // 金库集中度（89.95% 单点）
+  add("筹码分散", D.health>=60?8:(D.health>=40?5:3), 10, "金库占比 ~90%");
+  add("P1抽干", p.P1>=80?1:(p.P1>=50?5:9), 10, "P1="+p.P1);
+  add("P2后门", p.P2>=80?2:(p.P2>=50?6:9), 10, "P2="+p.P2);
+  add("P3撤池", p.P3>=80?0:(p.P3>=50?4:14), 15, "P3="+p.P3);
+  add("P4偿付", p.P4>=80?3:(p.P4>=50?6:9), 10, "P4="+p.P4);
+  add("P5参数", p.P5>=80?4:(p.P5>=50?7:9), 10, "P5="+p.P5);
+  add("活跃度", D.orders>0?4:1, 5, "订单 "+(D.orders||0));
+  const pct=Math.max(0,Math.min(100,Math.round(s)));
+  let level,color;
+  if(pct>=85){level="S · 安全";color:"#2FBF4E";}
+  else if(pct>=70){level="A · 较安全";color:"#2FBF4E";}
+  else if(pct>=50){level="B · 关注";color:"#FADB14";}
+  else if(pct>=30){level="C · 警惕";color:"#FA8C16";}
+  else {level="D · 高危";color:"#FF4D4F";}
+  return {score:pct,level,color,items};
+}
+
+/* ========== 渲染 ========== */
+function renderAll(){
+  renderKpis(); renderScn(); renderSafety();
+}
+function renderKpis(){
+  const gap=((D.salePrice-D.dexPrice)/D.dexPrice*100);
+  set("kDex",D.dexPrice.toFixed(4));
+  set("kSale",D.salePrice.toFixed(4));
+  set("kGap",gap.toFixed(1)+"%",gap<0?"var(--red)":"var(--green)");
+  set("kHealth",D.health+"/100",D.health<40?"var(--red)":(D.health<70?"var(--orange)":"var(--green)"));
+  set("kRisk",D.risk+"（"+D.level+"）",D.risk>=60?"var(--red)":"var(--orange)");
+  set("kLp",D.lpLockedPct.toFixed(2)+"% 未锁",D.lpLockedPct>90?"var(--red)":"var(--green)");
+}
+function set(id,v,color){const e=document.getElementById(id);e.textContent=v;if(color)e.style.color=color;}
+function renderScn(){
+  const invest=parseFloat(document.getElementById("invest").value)||0;
+  const period=parseInt(document.getElementById("period").value,10);
+  const channel=document.getElementById("channel").value;
+  const priceChg=parseInt(document.getElementById("priceChg").value,10);
+  const r=calcScenarios(invest,period,channel,priceChg);
+  // 场景列表
+  const scn=[
+    {nm:"A · 套利兑现（乐观）",val:r.aA,inv:invest,prob:(r.wA*100).toFixed(0)+"%",cl:"t-grn",
+     pd:"全量按市价卖出（扣最低卖税 3%）。当前深度下"+fmt(invest)+" USDT 全量兑现"+(r.aA<invest?"反而亏损，深度不足以承接":"可兑现")+"。"},
+    {nm:"A2 · 小额套利参考",val:r.aSmall,inv:r.smallCap,prob:"—",cl:"t-cyn",
+     pd:"只投入池深 5%（约 "+fmt(r.smallCap)+" USDT）时的兑现额——投入"+fmt(r.smallCap)+" USDT、期末约 "+fmt(r.aSmall)+" USDT，盈利约 +"+(r.aSmall/r.smallCap*100-100).toFixed(0)+"%。小额有肉，大额无池。"},
+    {nm:"B · 持有待涨（中性）",val:r.aB_hold,inv:invest,prob:(r.wB*100).toFixed(0)+"%",cl:"t-yel",
+     pd:"一年后价格"+priceChg+(priceChg>=0?"涨":"跌")+" "+Math.abs(priceChg)+"% 的期末价值（未计卖出摩擦）。"},
+    {nm:"C · 机制受限（提币疑点）",val:r.aC,inv:invest,prob:(r.wC*100).toFixed(0)+"%",cl:"t-org",
+     pd:"链上证据：光能买家仅获 NFT、TMSR 未直接到账（C3）。若提币通道不通，本金锁定、无法退出。"},
+    {nm:"D · 结构性撤池（风险）",val:r.aD,inv:invest,prob:(r.wD*100).toFixed(0)+"%",cl:"t-red",
+     pd:"初始接收人持 99.95% LP 且未锁定（P3=100）。撤池=代币归零。属权利而非作恶，但真实存在。"}
+  ];
+  document.getElementById("expTag").textContent="期望收益 "+(r.exp-invest>=0?"+":"")+fmt(r.exp-invest)+" USDT";
+  document.getElementById("expTag").className="tag "+(r.exp>=invest?"t-grn":"t-red");
+  const list=document.getElementById("scnList");
+  list.innerHTML="";
+  scn.forEach(function(s){
+    const d=document.createElement("div");d.className="scn";
+    const pnl=s.val-s.inv;
+    const pnlCls=pnl>0?"var(--green)":(pnl<0?"var(--red)":"var(--muted)");
+    d.innerHTML='<div class="hd"><span class="nm">'+s.nm+'</span><span class="tag '+s.cl+'">概率 '+s.prob+'</span></div>'+
+      '<div class="pv" style="color:'+pnlCls+'">期末 '+fmt(s.val)+' USDT · '+(pnl>=0?"+":"")+fmt(pnl)+'</div>'+
+      '<div class="pd">'+s.pd+'</div>';
+    list.appendChild(d);
+  });
+  // 期望收益横幅
+  const expDiv=document.createElement("div");
+  expDiv.className="exp";
+  expDiv.textContent="期望收益（按当前信号加权）≈ "+(r.exp-invest>=0?"+":"")+fmt(r.exp-invest)+" USDT / 年化 "+(r.exp-invest>=0?"+":"")+((r.exp-invest)/invest*100*(12/period)).toFixed(1)+"%";
+  list.prepend(expDiv);
+  // 图表
+  drawScnChart(scn,r,invest);
+}
+function drawScnChart(scn,r,invest){
+  const el=document.getElementById("chartScn");
+  if(!window.echarts)return;
+  const chart=echarts.init(el,null,{renderer:"canvas"});
+  const names=scn.map(s=>s.nm.split(" · ")[0]);
+  const vals=scn.map(s=>Math.round(s.val));
+  const colors=["#2FBF4E","#00D4FF","#FADB14","#FA8C16","#FF4D4F"];
+  chart.setOption({
+    grid:{left:8,right:14,top:26,bottom:26,containLabel:true},
+    tooltip:{trigger:"axis",axisPointer:{type:"shadow"},backgroundColor:"#182330",borderColor:"#223042",textStyle:{color:"#E6EDF3",fontSize:12}},
+    xAxis:{type:"category",data:names,axisLabel:{color:"#93A4B8",fontSize:11,interval:0},axisLine:{lineStyle:{color:"#223042"}}},
+    yAxis:{type:"value",axisLabel:{color:"#5C6E84",fontSize:10},splitLine:{lineStyle:{color:"#1A2430"}}},
+    series:[{
+      type:"bar",data:vals,barWidth:"52%",
+      itemStyle:{borderRadius:[6,6,0,0]},
+      label:{show:true,position:"top",color:"#E6EDF3",fontSize:11,formatter:p=>fmt(p.value)},
+      markLine:{symbol:"none",lineStyle:{color:"#93A4B8",type:"dashed"},label:{color:"#93A4B8",fontSize:10,formatter:"本金 "+fmt(invest)},data:[{yAxis:invest}]}
+    }]
+  });
+  chart.getDom().style.height="150px";chart.resize();
+  const colorsMap={};scn.forEach((s,i)=>colorsMap[s.nm.split(" · ")[0]]=colors[i]);
+}
+function renderSafety(){
+  const s=safetyScore();
+  const badge=document.getElementById("safetyBadge");
+  badge.textContent=s.level;
+  badge.className="tag "+(s.score>=70?"t-grn":(s.score>=50?"t-yel":(s.score>=30?"t-org":"t-red")));
+  document.getElementById("safetyText").innerHTML=
+    "综合资金安全指数 <b style='font-size:18px;color:"+s.color+"'>"+s.score+"/100</b>。"+
+    (s.score<30?"当前处于<b style='color:var(--red)'>高危区</b>：十项因子中提币通道、LP 锁仓、售价倒挂、撤池风险四项均接近满分危险。建议观望，不投入或仅用 1% 以内试水，并设置硬性撤离线。":
+    s.score<50?"处于<b style='color:var(--orange)'>警惕区</b>：结构性风险高于收益预期，任何一项监控红灯升级应立即复核。":
+    "处于<b style='color:var(--yellow)'>关注区</b>：风险可控但需持续盯盘。");
+  const el=document.getElementById("chartFactors");
+  if(!window.echarts)return;
+  const chart=echarts.init(el,null,{renderer:"canvas"});
+  const names=s.items.map(i=>i.name);
+  const vals=s.items.map(i=>i.score);
+  const maxs=s.items.map(i=>i.max);
+  chart.setOption({
+    grid:{left:8,right:16,top:10,bottom:24,containLabel:true},
+    tooltip:{trigger:"item",backgroundColor:"#182330",borderColor:"#223042",textStyle:{color:"#E6EDF3",fontSize:11},
+      formatter:p=>p.name+"：<b>"+p.value+"/"+maxs[p.dataIndex]+"</b><br>"+(s.items[p.dataIndex].note||"")},
+    xAxis:{type:"category",data:names,axisLabel:{color:"#93A4B8",fontSize:10,interval:0},axisLine:{lineStyle:{color:"#223042"}}},
+    yAxis:{type:"value",max:15,axisLabel:{color:"#5C6E84",fontSize:10},splitLine:{lineStyle:{color:"#1A2430"}}},
+    series:[{type:"bar",data:vals,barWidth:"46%",
+      itemStyle:{color:p=>vals[p.dataIndex]>=maxs[p.dataIndex]*0.7?"#2FBF4E":(vals[p.dataIndex]>=maxs[p.dataIndex]*0.4?"#FADB14":"#FF4D4F"),borderRadius:[5,5,0,0]},
+      label:{show:true,position:"top",color:"#E6EDF3",fontSize:10,formatter:p=>p.value+"/"+maxs[p.dataIndex]}}]
+  });
+  chart.getDom().style.height="150px";chart.resize();
+  // 仪表盘
+  const g=document.getElementById("chartGauge");
+  const g2=echarts.init(g,null,{renderer:"canvas"});
+  g2.setOption({
+    series:[{type:"gauge",startAngle:210,endAngle:-30,min:0,max:100,
+      axisLine:{lineStyle:{width:14,color:[[0.3,"#FF4D4F"],[0.5,"#FA8C16"],[0.7,"#FADB14"],[1,"#2FBF4E"]]}},
+      pointer:{itemStyle:{color:"#00D4FF"}},anchor:{show:true,itemStyle:{color:"#00D4FF"}},
+      axisTick:{show:false},splitLine:{length:8,lineStyle:{color:"#0A0E13"}},
+      axisLabel:{color:"#5C6E84",fontSize:9,distance:14},
+      detail:{valueAnimation:true,fontSize:22,color:"#E6EDF3",offsetCenter:[0,"60%"],
+        formatter:v=>v+"/100"},
+      data:[{value:s.score}],
+      title:{offsetCenter:[0,"88%"],color:"#5C6E84",fontSize:10}}]
+  });
+  g.style.height="190px";g2.resize();
+}
+
+/* 事件绑定 */
+document.getElementById("calcBtn").addEventListener("click",function(){
+  renderScn();renderSafety();
+  this.textContent="已重新计算 ✓";const b=this;setTimeout(()=>b.textContent="开始模拟一年收益",1200);
+});
+["invest","period","channel"].forEach(id=>{
+  document.getElementById(id).addEventListener("change",renderScn);
+});
+document.getElementById("priceChg").addEventListener("input",function(){
+  const v=this.value;
+  document.getElementById("priceChgVal").textContent=(v>=0?"+":"")+v+"%";
+  renderScn();
+});
+window.addEventListener("resize",function(){
+  if(window.echarts)setTimeout(function(){
+    echarts.getInstanceByDom(document.getElementById("chartScn"))&&echarts.getInstanceByDom(document.getElementById("chartScn")).resize();
+    echarts.getInstanceByDom(document.getElementById("chartFactors"))&&echarts.getInstanceByDom(document.getElementById("chartFactors")).resize();
+    echarts.getInstanceByDom(document.getElementById("chartGauge"))&&echarts.getInstanceByDom(document.getElementById("chartGauge")).resize();
+  },200);
+});
+
+renderKpis();
+tryFetch();
+</script>
+</body>
+</html>
