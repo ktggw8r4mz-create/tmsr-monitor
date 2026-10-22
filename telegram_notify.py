@@ -44,7 +44,7 @@ def detect():
     """返回本轮变动清单 [(类型, 描述)]"""
     changes = []
     cfg = load(CFG_PATH, {})
-    t = cfg.get("notify", {})
+    t = cfg.get("notify") or cfg
     state = load(STATE_PATH, {})
     alls = load(ALL_PATH, {})
     base = load(BASE_PATH, {"state": None, "all": None})
@@ -108,24 +108,43 @@ def build_message(changes, state):
     lines.append("监控: TMSR 链上监控中心 | 建议查看完整看板")
     return "\n".join(lines)
 
+def build_heartbeat(state, predict):
+    """无变动时的心跳消息：每 30 分钟必发，带关键指标，证明系统活着"""
+    lines = ["TMSR 监控巡检（每 30 分钟）"]
+    lines.append("时间: %s" % datetime.datetime.now().strftime("%m-%d %H:%M"))
+    lines.append("状态: 无异常变动，系统运行正常")
+    lines.append("")
+    if state:
+        m = state.get("metrics", {})
+        if m:
+            lines.append("健康度: %s/100 | DEX 价: %s USDT | LP 锁定: %s%%"
+                         % (m.get("health", "—"), m.get("dexPrice", "—"), m.get("lpLockedPct", "—")))
+    if predict:
+        lines.append("综合风险: %s/100（%s）" % (predict.get("overall", "—"), predict.get("level", "—")))
+        for a in (predict.get("alerts") or [])[:5]:
+            lines.append("  %s %s: %s" % (a.get("id", ""), a.get("name", "")[:18], a.get("score", "—")))
+    lines.append("")
+    lines.append("监控: TMSR 链上监控中心 | 有变动将立即单独推送")
+    return "\n".join(lines)
+
 def main():
     cfg = load(CFG_PATH, {})
-    tg = cfg.get("telegram", {})
-    token = (tg.get("bot_token") or "").strip()
-    chat_id = (tg.get("chat_id") or "").strip()
-    proxy = (tg.get("proxy") or "").strip() or None
+    tg = cfg.get("telegram") or {}
+    token = (tg.get("bot_token") or cfg.get("bot_token") or "").strip()
+    chat_id = (tg.get("chat_id") or cfg.get("chat_id") or "").strip()
+    proxy = (tg.get("proxy") or cfg.get("proxy") or "").strip() or None
     state = load(STATE_PATH, {})
     alls = load(ALL_PATH, {})
+    predict = load(os.path.join(BASE, "predict.json"), {})
     changes = detect()
     log("检测到 %d 项变动" % len(changes))
     # 更新 baseline（无论推送与否，保持连续）
     save(BASE_PATH, {"state": state, "all": alls, "ts": int(time.time())})
-    if not changes:
-        return
-    msg = build_message(changes, state)
+    # 有变动 → 变动警报；无变动 → 心跳消息（每 30 分钟必推一次）
+    msg = build_message(changes, state) if changes else build_heartbeat(state, predict)
     if not token or not chat_id:
-        log("Telegram 未配置（bot_token/chat_id 为空），本轮变动仅记录日志")
-        print("[notify] 未配置 Telegram，跳过推送。变动摘要:")
+        log("Telegram 未配置（bot_token/chat_id 为空），本轮消息仅记录日志")
+        print("[notify] 未配置 Telegram，跳过推送。消息内容:")
         print(msg)
         return
     try:
