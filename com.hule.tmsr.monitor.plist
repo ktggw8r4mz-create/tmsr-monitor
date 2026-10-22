@@ -10,7 +10,7 @@
         <string>/Users/hule/Doubao/chats/2026-10-19/new-chat-1/TMSR监控模型/run_all.py</string>
     </array>
     <key>StartInterval</key>
-    <integer>86400</integer>
+    <integer>1800</integer>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
