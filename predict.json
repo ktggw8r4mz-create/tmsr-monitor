@@ -1,31 +1,31 @@
 {
- "generated_at": "2026-10-24 06:26:38",
- "overall": 25,
- "level": "低",
+ "generated_at": "2026-10-24 06:57:39",
+ "overall": 62,
+ "level": "高",
  "alerts": [
   {
    "id": "P1",
    "name": "开放销售 → 库存被套利抽干",
-   "score": 25,
+   "score": 95,
    "horizon": "若 openSale 触发后 1-6h",
    "trigger": "salePaused=false 且开放销售",
-   "desc": "官网售价 0.05 vs 市价 None，倒挂 —%；一旦放行，套利循环将抽干光能 None 枚 TMSR 库存并砸穿池价。"
+   "desc": "官网售价 0.05 vs 市价 0.186299，倒挂 -73.2%；一旦放行，套利循环将抽干光能 126822.36877784386 枚 TMSR 库存并砸穿池价。"
   },
   {
    "id": "P2",
    "name": "owner 后门提币（金库/提现/光能）",
-   "score": 35,
+   "score": 75,
    "horizon": "随时（无时间锁）",
    "trigger": "Vault.withdraw / Light.withdrawToken / Withdraw.rescueToken 被调用",
-   "desc": "金库 None 枚 + 提现 None 枚 + 光能 None USDT 可被各自 owner 一键转走；任何合约余额单块骤降即为触发。"
+   "desc": "金库 1888940000.0 枚 + 提现 31739.255247 枚 + 光能 3421.921348445295 USDT 可被各自 owner 一键转走；任何合约余额单块骤降即为触发。"
   },
   {
    "id": "P3",
    "name": "initialRecipient 撤池归零",
-   "score": 25,
+   "score": 100,
    "horizon": "随时（LP 未锁）",
    "trigger": "initialRecipient LP 余额下降",
-   "desc": "其持有 None LP（占比 —%）未锁定，卖出即抽干 None USDT / None TMSR 深度。"
+   "desc": "其持有 223609.69381616925 LP（占比 100.0%）未锁定，卖出即抽干 96617.00480255946 USDT / 518613.30203118705 TMSR 深度。"
   },
   {
    "id": "P4",
@@ -33,7 +33,7 @@
    "score": 10,
    "horizon": "订单批量创建后",
    "trigger": "totalReservedTmsr 接近合约余额",
-   "desc": "买1兑2每单净缺口 1 份；当前未兑 None 枚 / 可用 None 枚，先到先得，余额不足即拒付。"
+   "desc": "买1兑2每单净缺口 1 份；当前未兑 None 枚 / 可用 10000.0 枚，先到先得，余额不足即拒付。"
   },
   {
    "id": "P5",
