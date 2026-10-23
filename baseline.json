@@ -1,56 +1,63 @@
 {
  "state": {
-  "ts": 1792796203,
-  "iso": "2026-10-24T06:56:43",
-  "block": 129405690,
+  "ts": 1792798064,
+  "iso": "2026-10-24T07:27:44",
+  "block": 129409807,
   "token": {
-   "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
-   "balVault": 1888940000.0,
+   "totalSupply": 2100000000.0,
    "balDead": 0.0,
-   "buyEnabled": null,
-   "baseSellTaxBps": null,
-   "waitingFeeTmsr": null,
-   "dailyBasePrice": null,
+   "balVault": 1888940000.0,
+   "balInitRec": 2e-17,
    "buyTaxBps": null,
+   "waitingFeeTmsr": null,
    "twapPrice": null,
-   "balInitRec": 2e-17
+   "baseSellTaxBps": null,
+   "dailyBasePrice": null,
+   "buyEnabled": null
   },
   "light": {
-   "salePrice": null,
    "balTmsr": 126822.36877784386,
+   "salePrice": null,
    "purchaseUnit": null,
-   "totalOrders": null,
-   "balUsdt": null,
+   "balUsdt": 3421.921348445295,
    "burnBps": null,
+   "treasuryPaused": null,
    "salePaused": null,
-   "treasuryPaused": null
+   "totalOrders": null
   },
   "turbo": {
    "balTmsr": 10000.0,
    "lockDuration": null,
    "lockBps": null,
-   "availableTmsr": null,
-   "totalReservedTmsr": null
+   "totalReservedTmsr": null,
+   "availableTmsr": null
   },
   "vault": {
    "balTmsr": 1888940000.0
   },
   "withdraw": {
-   "balTmsr": 31739.255247
+   "balTmsr": 31734.950869
   },
   "pair": {
-   "error": "<urlopen error [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)>"
+   "reserveUsdt": 96617.00480255946,
+   "reserveTmsr": 518613.30203118705,
+   "dexPrice": 0.186299,
+   "lpTotal": 223711.74416313967,
+   "lpInitRec": 223609.69381616925,
+   "lpLockedPct": 99.95
   },
   "metrics": {
+   "dexPrice": 0.186299,
+   "lpLockedPct": 99.95,
    "vaultSharePct": 89.95,
    "health": 28
   }
  },
  "all": {
-  "ts": 1792796203,
-  "iso": "2026-10-24 06:56:43",
-  "block": 129405692,
+  "ts": 1792798064,
+  "iso": "2026-10-24 07:27:44",
+  "block": 129409806,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -87,7 +94,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 31739.255247,
+    "tmsr": 31734.950869,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -178,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 310964.6777612983,
     "lp": 0.0,
-    "bnb": 18146357.60342472
+    "bnb": 18146358.611983333
    }
   },
   "pool": {
@@ -206,11 +213,18 @@
    "死地址": null
   },
   "logs": {
-   "ok": false,
-   "count": 0,
-   "sample": [],
-   "error": "<urlopen error [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)>"
+   "ok": true,
+   "count": 1,
+   "sample": [
+    {
+     "block": "0x7b6a047",
+     "from": "0x99686192b091c212e613652dbfe3b003bce7722a",
+     "to": "0x04149a78cf4b2a92d444c18c9a9edd9a68a908eb",
+     "data": "0x000000000000000000"
+    }
+   ],
+   "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1792796259
+ "ts": 1792798111
 }
