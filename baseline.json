@@ -1,36 +1,36 @@
 {
  "state": {
-  "ts": 1793085523,
-  "iso": "2026-10-27T15:18:43",
-  "block": 130048186,
+  "ts": 1793087437,
+  "iso": "2026-10-27T15:50:37",
+  "block": 130052435,
   "token": {
    "owner": "0x0000000000…",
    "balVault": 1888940000.0,
+   "totalSupply": 2100000000.0,
    "balDead": 0.0,
    "balInitRec": 2e-17,
-   "totalSupply": 2100000000.0,
-   "baseSellTaxBps": null,
-   "buyTaxBps": null,
-   "waitingFeeTmsr": null,
    "twapPrice": null,
+   "waitingFeeTmsr": null,
+   "buyTaxBps": null,
    "buyEnabled": null,
-   "dailyBasePrice": null
+   "dailyBasePrice": null,
+   "baseSellTaxBps": null
   },
   "light": {
-   "balTmsr": 107217.79872555473,
-   "balUsdt": 3348.5036827649424,
-   "purchaseUnit": null,
    "salePrice": null,
-   "salePaused": null,
-   "burnBps": null,
+   "balTmsr": 107779.90620938696,
+   "purchaseUnit": null,
+   "balUsdt": 3250.1126744125922,
    "totalOrders": null,
-   "treasuryPaused": null
+   "treasuryPaused": null,
+   "burnBps": null,
+   "salePaused": null
   },
   "turbo": {
    "balTmsr": 10000.0,
-   "lockDuration": null,
    "totalReservedTmsr": null,
    "lockBps": null,
+   "lockDuration": null,
    "availableTmsr": null
   },
   "vault": {
@@ -40,24 +40,24 @@
    "balTmsr": 12499.321130999999
   },
   "pair": {
-   "reserveUsdt": 93489.69933927081,
-   "reserveTmsr": 536007.5296667919,
-   "dexPrice": 0.174419,
+   "reserveUsdt": 93588.09034762315,
+   "reserveTmsr": 535445.4221829597,
+   "dexPrice": 0.174785,
    "lpTotal": 223711.74416313967,
    "lpInitRec": 223609.69381616925,
    "lpLockedPct": 99.95
   },
   "metrics": {
-   "dexPrice": 0.174419,
+   "dexPrice": 0.174785,
    "lpLockedPct": 99.95,
    "vaultSharePct": 89.95,
    "health": 28
   }
  },
  "all": {
-  "ts": 1793085523,
-  "iso": "2026-10-27 15:18:43",
-  "block": 130048186,
+  "ts": 1793087437,
+  "iso": "2026-10-27 15:50:37",
+  "block": 130052434,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -70,8 +70,8 @@
    "0x651f0EF421EfDe887dF55f05b2C243008CdF5B49": {
     "name": "light合约",
     "address": "0x651f0EF421EfDe887dF55f05b2C243008CdF5B49",
-    "tmsr": 107217.79872555475,
-    "usdt": 3348.5036827649424,
+    "tmsr": 107779.90620938696,
+    "usdt": 3250.1126744125922,
     "lp": 42.97838359401156,
     "bnb": 0.0
    },
@@ -174,8 +174,8 @@
    "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371": {
     "name": "DEX pair",
     "address": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
-    "tmsr": 536007.5296667919,
-    "usdt": 93489.69933927081,
+    "tmsr": 535445.4221829597,
+    "usdt": 93588.09034762316,
     "lp": 0.0,
     "bnb": 0.0
    },
@@ -183,15 +183,15 @@
     "name": "死地址",
     "address": "0x000000000000000000000000000000000000dEaD",
     "tmsr": 0.0,
-    "usdt": 310975.6511495669,
+    "usdt": 310975.6514422032,
     "lp": 0.0,
-    "bnb": 18146566.579233307
+    "bnb": 18146568.464063644
    }
   },
   "pool": {
-   "usdt": 93489.69933927081,
-   "tmsr": 536007.5296667919,
-   "price": 0.174419,
+   "usdt": 93588.09034762315,
+   "tmsr": 535445.4221829597,
+   "price": 0.174785,
    "lpTotal": 223711.74416313964
   },
   "excluded": {
@@ -217,32 +217,32 @@
    "count": 4,
    "sample": [
     {
-     "block": "0x7c05eb0",
-     "from": "0xcbb885e9e5e1e60c46bf340963e11c96cb813e7b",
-     "to": "0x07964f135f276412b3182a3b2407b8dd45000000",
+     "block": "0x7c06e5e",
+     "from": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
+     "to": "0x651f0ef421efde887df55f05b2c243008cdf5b49",
      "data": "0x000000000000000000"
     },
     {
-     "block": "0x7c05eb0",
-     "from": "0x07964f135f276412b3182a3b2407b8dd45000000",
-     "to": "0x1e0d2191a75d2cd74aeb917459d3f9cd8a9a280c",
+     "block": "0x7c06e82",
+     "from": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
+     "to": "0x651f0ef421efde887df55f05b2c243008cdf5b49",
      "data": "0x000000000000000000"
     },
     {
-     "block": "0x7c05eb0",
-     "from": "0x1e0d2191a75d2cd74aeb917459d3f9cd8a9a280c",
-     "to": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
+     "block": "0x7c06ea3",
+     "from": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
+     "to": "0x651f0ef421efde887df55f05b2c243008cdf5b49",
      "data": "0x000000000000000000"
     },
     {
-     "block": "0x7c05eb0",
-     "from": "0x1e0d2191a75d2cd74aeb917459d3f9cd8a9a280c",
-     "to": "0xd8d3cd314fdbb54435a6e7cccca1adbbdf68674f",
+     "block": "0x7c06fe7",
+     "from": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
+     "to": "0x651f0ef421efde887df55f05b2c243008cdf5b49",
      "data": "0x000000000000000000"
     }
    ],
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1793085632
+ "ts": 1793087526
 }
