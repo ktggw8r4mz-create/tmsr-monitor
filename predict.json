@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31 10:52:27",
+ "generated_at": "2026-10-31 11:24:01",
  "overall": 60,
  "level": "高",
  "alerts": [
@@ -17,7 +17,7 @@
    "score": 65,
    "horizon": "随时（无时间锁）",
    "trigger": "Vault.withdraw / Light.withdrawToken / Withdraw.rescueToken 被调用",
-   "desc": "金库 1888940000.0 枚 + 提现 2463.940107 枚 + 光能 2628.4508753332093 USDT 可被各自 owner 一键转走；任何合约余额单块骤降即为触发。"
+   "desc": "金库 1888940000.0 枚 + 提现 1435.687967 枚 + 光能 2628.4508753332093 USDT 可被各自 owner 一键转走；任何合约余额单块骤降即为触发。"
   },
   {
    "id": "P3",
