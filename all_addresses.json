@@ -1,12 +1,12 @@
 {
- "ts": 1793534592,
- "iso": "2026-11-01 20:03:12",
- "block": 131045645,
+ "ts": 1793536539,
+ "iso": "2026-11-01 20:35:39",
+ "block": 131049970,
  "addresses": {
   "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
    "name": "token合约",
    "address": "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F",
-   "tmsr": 130.72022196205,
+   "tmsr": 48.40435,
    "usdt": 0.0,
    "lp": 0.0,
    "bnb": 0.0
@@ -38,7 +38,7 @@
   "0x99686192b091c212E613652DBfe3b003Bce7722A": {
    "name": "withdraw合约",
    "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-   "tmsr": 19223.769512,
+   "tmsr": 19152.215846,
    "usdt": 0.0,
    "lp": 0.0,
    "bnb": 0.0
@@ -63,7 +63,7 @@
    "name": "marketingWallet",
    "address": "0x7d037e47b9fa8216203ec16ddb1dc7cf7d206638",
    "tmsr": 0.0,
-   "usdt": 430.52436762146806,
+   "usdt": 451.3118008981007,
    "lp": 0.0,
    "bnb": 0.0
   },
@@ -118,8 +118,8 @@
   "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371": {
    "name": "DEX pair",
    "address": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
-   "tmsr": 560631.2690011618,
-   "usdt": 89397.11463897563,
+   "tmsr": 561681.6718731239,
+   "usdt": 89230.35004069537,
    "lp": 0.0,
    "bnb": 0.0
   },
@@ -127,15 +127,15 @@
    "name": "死地址",
    "address": "0x000000000000000000000000000000000000dEaD",
    "tmsr": 0.0,
-   "usdt": 311030.8907090379,
+   "usdt": 311030.89071058633,
    "lp": 0.0,
-   "bnb": 18146856.50577304
+   "bnb": 18146857.79677069
   }
  },
  "pool": {
-  "usdt": 89397.11463897563,
-  "tmsr": 560631.2690011618,
-  "price": 0.159458,
+  "usdt": 89230.35004069537,
+  "tmsr": 561681.6718731239,
+  "price": 0.158863,
   "lpTotal": 223711.74416313964
  },
  "excluded": {
@@ -157,9 +157,9 @@
   "死地址": null
  },
  "logs": {
-  "ok": false,
+  "ok": true,
   "count": 0,
   "sample": [],
-  "error": "Remote end closed connection without response"
+  "error": "HTTP Error 429: Too Many Requests"
  }
 }
