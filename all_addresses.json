@@ -1,12 +1,12 @@
 {
- "ts": 1793536539,
- "iso": "2026-11-01 20:35:39",
- "block": 131049970,
+ "ts": 1793538474,
+ "iso": "2026-11-01 21:07:54",
+ "block": 131054270,
  "addresses": {
   "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
    "name": "token合约",
    "address": "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F",
-   "tmsr": 48.40435,
+   "tmsr": 48.5539,
    "usdt": 0.0,
    "lp": 0.0,
    "bnb": 0.0
@@ -38,7 +38,7 @@
   "0x99686192b091c212E613652DBfe3b003Bce7722A": {
    "name": "withdraw合约",
    "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-   "tmsr": 19152.215846,
+   "tmsr": 19148.006807,
    "usdt": 0.0,
    "lp": 0.0,
    "bnb": 0.0
@@ -118,8 +118,8 @@
   "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371": {
    "name": "DEX pair",
    "address": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
-   "tmsr": 561681.6718731239,
-   "usdt": 89230.35004069537,
+   "tmsr": 561684.5133231239,
+   "usdt": 89229.89977063028,
    "lp": 0.0,
    "bnb": 0.0
   },
@@ -129,13 +129,13 @@
    "tmsr": 0.0,
    "usdt": 311030.89071058633,
    "lp": 0.0,
-   "bnb": 18146857.79677069
+   "bnb": 18146858.75694418
   }
  },
  "pool": {
-  "usdt": 89230.35004069537,
-  "tmsr": 561681.6718731239,
-  "price": 0.158863,
+  "usdt": 89229.89977063028,
+  "tmsr": 561684.5133231238,
+  "price": 0.158861,
   "lpTotal": 223711.74416313964
  },
  "excluded": {
@@ -157,9 +157,9 @@
   "死地址": null
  },
  "logs": {
-  "ok": true,
+  "ok": false,
   "count": 0,
   "sample": [],
-  "error": "HTTP Error 429: Too Many Requests"
+  "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
  }
 }
