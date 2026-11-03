@@ -1,36 +1,36 @@
 {
  "state": {
-  "ts": 1793688973,
-  "iso": "2026-11-03T14:56:13",
+  "ts": 1793690948,
+  "iso": "2026-11-03T15:29:08",
   "block": null,
   "token": {
-   "totalSupply": null,
    "waitingFeeTmsr": null,
-   "buyTaxBps": null,
-   "owner": null,
+   "totalSupply": null,
    "baseSellTaxBps": null,
+   "owner": null,
+   "buyTaxBps": null,
+   "twapPrice": null,
    "dailyBasePrice": null,
    "buyEnabled": null,
-   "balDead": null,
-   "twapPrice": null,
    "balInitRec": null,
+   "balDead": null,
    "balVault": null
   },
   "light": {
+   "salePrice": null,
+   "totalOrders": null,
    "burnBps": null,
    "purchaseUnit": null,
-   "salePrice": null,
-   "treasuryPaused": null,
    "salePaused": null,
-   "balTmsr": null,
    "balUsdt": null,
-   "totalOrders": null
+   "treasuryPaused": null,
+   "balTmsr": null
   },
   "turbo": {
-   "lockDuration": null,
    "lockBps": null,
-   "balTmsr": null,
    "availableTmsr": null,
+   "lockDuration": null,
+   "balTmsr": null,
    "totalReservedTmsr": null
   },
   "vault": {
@@ -47,8 +47,8 @@
   }
  },
  "all": {
-  "ts": 1793688973,
-  "iso": "2026-11-03 14:56:13",
+  "ts": 1793690948,
+  "iso": "2026-11-03 15:29:08",
   "block": null,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
@@ -208,5 +208,5 @@
    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
   }
  },
- "ts": 1793689139
+ "ts": 1793691135
 }
