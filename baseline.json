@@ -1,36 +1,36 @@
 {
  "state": {
-  "ts": 1793711419,
-  "iso": "2026-11-03T21:10:19",
+  "ts": 1793713443,
+  "iso": "2026-11-03T21:44:03",
   "block": null,
   "token": {
-   "buyEnabled": null,
    "owner": null,
-   "twapPrice": null,
-   "waitingFeeTmsr": null,
-   "dailyBasePrice": null,
-   "totalSupply": null,
-   "balVault": null,
+   "buyEnabled": null,
    "buyTaxBps": null,
+   "totalSupply": null,
+   "waitingFeeTmsr": null,
    "baseSellTaxBps": null,
+   "twapPrice": null,
+   "dailyBasePrice": null,
    "balInitRec": null,
+   "balVault": null,
    "balDead": null
   },
   "light": {
-   "purchaseUnit": null,
-   "burnBps": null,
-   "totalOrders": null,
-   "salePaused": null,
    "salePrice": null,
-   "balUsdt": null,
+   "purchaseUnit": null,
+   "totalOrders": null,
    "treasuryPaused": null,
-   "balTmsr": null
+   "balTmsr": null,
+   "balUsdt": null,
+   "salePaused": null,
+   "burnBps": null
   },
   "turbo": {
-   "totalReservedTmsr": null,
-   "lockBps": null,
    "availableTmsr": null,
+   "lockBps": null,
    "lockDuration": null,
+   "totalReservedTmsr": null,
    "balTmsr": null
   },
   "vault": {
@@ -40,15 +40,15 @@
    "balTmsr": null
   },
   "pair": {
-   "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+   "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
   },
   "metrics": {
    "health": null
   }
  },
  "all": {
-  "ts": 1793711419,
-  "iso": "2026-11-03 21:10:19",
+  "ts": 1793713443,
+  "iso": "2026-11-03 21:44:03",
   "block": null,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
@@ -208,5 +208,5 @@
    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
   }
  },
- "ts": 1793711637
+ "ts": 1793713648
 }
