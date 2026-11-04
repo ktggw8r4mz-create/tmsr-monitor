@@ -1,6 +1,6 @@
 {
- "ts": 1793770794,
- "iso": "2026-11-04 13:39:54",
+ "ts": 1793772779,
+ "iso": "2026-11-04 14:12:59",
  "block": null,
  "addresses": {
   "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
@@ -133,7 +133,7 @@
   }
  },
  "pool": {
-  "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
  },
  "excluded": {
   "token合约": null,
