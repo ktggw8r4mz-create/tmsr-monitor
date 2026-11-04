@@ -1,29 +1,29 @@
 {
  "state": {
-  "ts": 1793826120,
-  "iso": "2026-11-05T05:02:00",
-  "block": 131693323,
+  "ts": 1793827949,
+  "iso": "2026-11-05T05:32:29",
+  "block": 131697388,
   "token": {
-   "owner": "0x0000000000…",
    "totalSupply": 2100000000.0,
    "balVault": 1888880000.0,
    "balDead": 0.0,
    "balInitRec": 2e-17,
-   "waitingFeeTmsr": null,
-   "buyTaxBps": null,
-   "dailyBasePrice": null,
-   "twapPrice": null,
+   "owner": "0x0000000000…",
    "baseSellTaxBps": null,
-   "buyEnabled": null
+   "twapPrice": null,
+   "buyTaxBps": null,
+   "buyEnabled": null,
+   "waitingFeeTmsr": null,
+   "dailyBasePrice": null
   },
   "light": {
-   "balTmsr": 71946.68034415961,
    "salePrice": null,
+   "balTmsr": 71946.68034415961,
    "purchaseUnit": null,
    "balUsdt": 2534.1716114511655,
-   "salePaused": null,
    "burnBps": null,
    "totalOrders": null,
+   "salePaused": null,
    "treasuryPaused": null
   },
   "turbo": {
@@ -55,9 +55,9 @@
   }
  },
  "all": {
-  "ts": 1793826120,
-  "iso": "2026-11-05 05:02:00",
-  "block": 131693323,
+  "ts": 1793827949,
+  "iso": "2026-11-05 05:32:29",
+  "block": 131697387,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -185,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 311038.4602886522,
     "lp": 0.0,
-    "bnb": 18147005.79855699
+    "bnb": 18147006.299126703
    }
   },
   "pool": {
@@ -213,11 +213,11 @@
    "死地址": null
   },
   "logs": {
-   "ok": true,
+   "ok": false,
    "count": 0,
    "sample": [],
-   "error": "HTTP Error 429: Too Many Requests"
+   "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
   }
  },
- "ts": 1793826144
+ "ts": 1793828023
 }
