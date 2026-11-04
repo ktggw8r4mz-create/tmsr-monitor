@@ -1,37 +1,37 @@
 {
  "state": {
-  "ts": 1793766781,
-  "iso": "2026-11-04T12:33:01",
+  "ts": 1793768815,
+  "iso": "2026-11-04T13:06:55",
   "block": null,
   "token": {
-   "buyTaxBps": null,
-   "baseSellTaxBps": null,
-   "owner": null,
-   "buyEnabled": null,
-   "twapPrice": null,
-   "totalSupply": null,
-   "balVault": null,
-   "balInitRec": null,
    "dailyBasePrice": null,
+   "owner": null,
    "waitingFeeTmsr": null,
+   "twapPrice": null,
+   "buyEnabled": null,
+   "balInitRec": null,
+   "balVault": null,
+   "baseSellTaxBps": null,
+   "totalSupply": null,
+   "buyTaxBps": null,
    "balDead": null
   },
   "light": {
-   "salePrice": null,
-   "burnBps": null,
    "purchaseUnit": null,
-   "totalOrders": null,
-   "salePaused": null,
+   "burnBps": null,
    "balTmsr": null,
-   "treasuryPaused": null,
-   "balUsdt": null
+   "salePaused": null,
+   "salePrice": null,
+   "totalOrders": null,
+   "balUsdt": null,
+   "treasuryPaused": null
   },
   "turbo": {
    "lockDuration": null,
    "totalReservedTmsr": null,
-   "balTmsr": null,
    "availableTmsr": null,
-   "lockBps": null
+   "lockBps": null,
+   "balTmsr": null
   },
   "vault": {
    "balTmsr": null
@@ -40,15 +40,15 @@
    "balTmsr": null
   },
   "pair": {
-   "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+   "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
   },
   "metrics": {
    "health": null
   }
  },
  "all": {
-  "ts": 1793766781,
-  "iso": "2026-11-04 12:33:01",
+  "ts": 1793768815,
+  "iso": "2026-11-04 13:06:55",
   "block": null,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
@@ -208,5 +208,5 @@
    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
   }
  },
- "ts": 1793766923
+ "ts": 1793768990
 }
