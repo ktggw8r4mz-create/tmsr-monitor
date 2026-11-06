@@ -1,29 +1,29 @@
 {
  "state": {
-  "ts": 1793989838,
-  "iso": "2026-11-07T02:30:38",
-  "block": 132057008,
+  "ts": 1793991678,
+  "iso": "2026-11-07T03:01:18",
+  "block": 132061096,
   "token": {
    "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
-   "balDead": 0.0,
    "balVault": 1888880000.0,
+   "balDead": 0.0,
    "balInitRec": 2e-17,
-   "waitingFeeTmsr": null,
-   "buyEnabled": null,
-   "twapPrice": null,
    "baseSellTaxBps": null,
-   "buyTaxBps": null,
-   "dailyBasePrice": null
+   "buyEnabled": null,
+   "dailyBasePrice": null,
+   "twapPrice": null,
+   "waitingFeeTmsr": null,
+   "buyTaxBps": null
   },
   "light": {
    "balTmsr": 34940.98548023016,
    "salePrice": null,
    "balUsdt": 22072.339829815326,
    "purchaseUnit": null,
-   "salePaused": null,
-   "treasuryPaused": null,
    "burnBps": null,
+   "treasuryPaused": null,
+   "salePaused": null,
    "totalOrders": null
   },
   "turbo": {
@@ -55,9 +55,9 @@
   }
  },
  "all": {
-  "ts": 1793989838,
-  "iso": "2026-11-07 02:30:38",
-  "block": 132057008,
+  "ts": 1793991678,
+  "iso": "2026-11-07 03:01:18",
+  "block": 132061097,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -185,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 311299.5087684317,
     "lp": 0.0,
-    "bnb": 18147107.794860452
+    "bnb": 18147109.07925816
    }
   },
   "pool": {
@@ -219,5 +219,5 @@
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1793989873
+ "ts": 1793991709
 }
