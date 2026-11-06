@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-06 15:42:18",
- "overall": 62,
+ "generated_at": "2026-11-06 16:15:30",
+ "overall": 60,
  "level": "高",
  "alerts": [
   {
@@ -14,10 +14,10 @@
   {
    "id": "P2",
    "name": "owner 后门提币（金库/提现/光能）",
-   "score": 75,
+   "score": 65,
    "horizon": "随时（无时间锁）",
    "trigger": "Vault.withdraw / Light.withdrawToken / Withdraw.rescueToken 被调用",
-   "desc": "金库 1888880000.0 枚 + 提现 24364.426479 枚 + 光能 22215.44401512213 USDT 可被各自 owner 一键转走；任何合约余额单块骤降即为触发。"
+   "desc": "金库 1888880000.0 枚 + 提现 6680.484628 枚 + 光能 22215.44401512213 USDT 可被各自 owner 一键转走；任何合约余额单块骤降即为触发。"
   },
   {
    "id": "P3",
