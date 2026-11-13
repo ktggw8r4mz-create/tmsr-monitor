@@ -1,68 +1,68 @@
 {
  "state": {
-  "ts": 1794578948,
-  "iso": "2026-11-13T22:09:08",
-  "block": 133365202,
+  "ts": 1794580943,
+  "iso": "2026-11-13T22:42:23",
+  "block": 133369637,
   "token": {
-   "owner": "0x0000000000…",
    "totalSupply": 2100000000.0,
+   "owner": "0x0000000000…",
    "balVault": 1888830000.0,
    "balInitRec": 2e-17,
-   "waitingFeeTmsr": null,
-   "dailyBasePrice": null,
    "balDead": 0.0,
-   "baseSellTaxBps": null,
    "twapPrice": null,
-   "buyEnabled": null,
-   "buyTaxBps": null
+   "waitingFeeTmsr": null,
+   "baseSellTaxBps": null,
+   "buyTaxBps": null,
+   "dailyBasePrice": null,
+   "buyEnabled": null
   },
   "light": {
-   "salePrice": null,
    "balTmsr": 26580.04142543101,
-   "balUsdt": 21819.190893019906,
-   "treasuryPaused": null,
    "purchaseUnit": null,
-   "salePaused": null,
+   "salePrice": null,
+   "balUsdt": 21819.190893019906,
    "burnBps": null,
-   "totalOrders": null
+   "totalOrders": null,
+   "treasuryPaused": null,
+   "salePaused": null
   },
   "turbo": {
-   "lockDuration": null,
    "balTmsr": 10000.0,
-   "lockBps": null,
    "totalReservedTmsr": null,
+   "lockDuration": null,
+   "lockBps": null,
    "availableTmsr": null
   },
   "vault": {
    "balTmsr": 1888830000.0
   },
   "withdraw": {
-   "balTmsr": 14522.421738000001
+   "balTmsr": 14091.133485
   },
   "pair": {
-   "reserveUsdt": 87265.04492913406,
-   "reserveTmsr": 574388.7270290407,
-   "dexPrice": 0.151927,
+   "reserveUsdt": 87240.65033618246,
+   "reserveTmsr": 574549.7425290407,
+   "dexPrice": 0.151842,
    "lpTotal": 223711.74416313967,
    "lpInitRec": 223609.69381616925,
    "lpLockedPct": 99.95
   },
   "metrics": {
-   "dexPrice": 0.151927,
+   "dexPrice": 0.151842,
    "lpLockedPct": 99.95,
    "vaultSharePct": 89.94,
    "health": 28
   }
  },
  "all": {
-  "ts": 1794578948,
-  "iso": "2026-11-13 22:09:08",
-  "block": 133365203,
+  "ts": 1794580943,
+  "iso": "2026-11-13 22:42:23",
+  "block": 133369636,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
     "address": "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F",
-    "tmsr": 14.5518983001,
+    "tmsr": 23.0263983001,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -94,7 +94,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 14522.421738,
+    "tmsr": 14407.590701,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -174,8 +174,8 @@
    "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371": {
     "name": "DEX pair",
     "address": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
-    "tmsr": 574388.7270290407,
-    "usdt": 87265.04492913406,
+    "tmsr": 574549.7425290407,
+    "usdt": 87240.65033618246,
     "lp": 0.0,
     "bnb": 0.0
    },
@@ -185,13 +185,13 @@
     "tmsr": 0.0,
     "usdt": 311849.55937384616,
     "lp": 0.0,
-    "bnb": 18147497.27273874
+    "bnb": 18147499.226407476
    }
   },
   "pool": {
-   "usdt": 87265.04492913406,
-   "tmsr": 574388.7270290407,
-   "price": 0.151927,
+   "usdt": 87240.65033618246,
+   "tmsr": 574549.7425290407,
+   "price": 0.151842,
    "lpTotal": 223711.74416313964
   },
   "excluded": {
@@ -214,23 +214,29 @@
   },
   "logs": {
    "ok": true,
-   "count": 2,
+   "count": 3,
    "sample": [
     {
-     "block": "0x7f2fc4f",
+     "block": "0x7f309d6",
      "from": "0x99686192b091c212e613652dbfe3b003bce7722a",
-     "to": "0xa84b642520b1b147624a90e0c4d04b224cd18272",
+     "to": "0x225a6c6a87d17aeb274d22d6c6fc879f6941f25d",
      "data": "0x000000000000000000"
     },
     {
-     "block": "0x7f2fd03",
+     "block": "0x7f30f61",
      "from": "0x99686192b091c212e613652dbfe3b003bce7722a",
-     "to": "0x8233823f21b7f00254a59e77eb9a7af81c5f3080",
+     "to": "0x225a6c6a87d17aeb274d22d6c6fc879f6941f25d",
+     "data": "0x000000000000000000"
+    },
+    {
+     "block": "0x7f30f76",
+     "from": "0x99686192b091c212e613652dbfe3b003bce7722a",
+     "to": "0x225a6c6a87d17aeb274d22d6c6fc879f6941f25d",
      "data": "0x000000000000000000"
     }
    ],
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1794579134
+ "ts": 1794581116
 }
