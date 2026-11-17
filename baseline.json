@@ -1,68 +1,68 @@
 {
  "state": {
-  "ts": 1794920180,
-  "iso": "2026-11-17T20:56:20",
-  "block": 134123268,
+  "ts": 1794922167,
+  "iso": "2026-11-17T21:29:27",
+  "block": 134127680,
   "token": {
-   "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
-   "balDead": 0.0,
+   "totalSupply": 2100000000.0,
    "balVault": 1888830000.0,
    "balInitRec": 2e-17,
+   "balDead": 0.0,
+   "buyEnabled": null,
    "twapPrice": null,
    "buyTaxBps": null,
    "baseSellTaxBps": null,
-   "waitingFeeTmsr": null,
-   "buyEnabled": null,
-   "dailyBasePrice": null
+   "dailyBasePrice": null,
+   "waitingFeeTmsr": null
   },
   "light": {
+   "balUsdt": 21819.190893019906,
+   "purchaseUnit": null,
    "salePrice": null,
    "balTmsr": 6580.041425431011,
-   "purchaseUnit": null,
-   "balUsdt": 21819.190893019906,
    "burnBps": null,
-   "treasuryPaused": null,
+   "salePaused": null,
    "totalOrders": null,
-   "salePaused": null
+   "treasuryPaused": null
   },
   "turbo": {
    "balTmsr": 10000.0,
-   "lockDuration": null,
    "lockBps": null,
+   "totalReservedTmsr": null,
    "availableTmsr": null,
-   "totalReservedTmsr": null
+   "lockDuration": null
   },
   "vault": {
    "balTmsr": 1888830000.0
   },
   "withdraw": {
-   "balTmsr": 15372.920912000001
+   "balTmsr": 15368.711873
   },
   "pair": {
-   "reserveUsdt": 86628.74800809882,
-   "reserveTmsr": 578618.2797969267,
-   "dexPrice": 0.149717,
+   "reserveUsdt": 86611.97310549037,
+   "reserveTmsr": 578730.6267556853,
+   "dexPrice": 0.149659,
    "lpTotal": 223711.74416313967,
    "lpInitRec": 223609.69381616925,
    "lpLockedPct": 99.95
   },
   "metrics": {
-   "dexPrice": 0.149717,
+   "dexPrice": 0.149659,
    "lpLockedPct": 99.95,
    "vaultSharePct": 89.94,
    "health": 28
   }
  },
  "all": {
-  "ts": 1794920180,
-  "iso": "2026-11-17 20:56:20",
-  "block": 134123268,
+  "ts": 1794922167,
+  "iso": "2026-11-17 21:29:27",
+  "block": 134127682,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
     "address": "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F",
-    "tmsr": 24.25328984405,
+    "tmsr": 30.16628767345,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -94,7 +94,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 15372.920912,
+    "tmsr": 15368.711873,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -174,8 +174,8 @@
    "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371": {
     "name": "DEX pair",
     "address": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
-    "tmsr": 578618.2797969267,
-    "usdt": 86628.74800809882,
+    "tmsr": 578730.6267556853,
+    "usdt": 86611.97310549038,
     "lp": 0.0,
     "bnb": 0.0
    },
@@ -185,13 +185,13 @@
     "tmsr": 0.0,
     "usdt": 312329.95279388514,
     "lp": 0.0,
-    "bnb": 18147727.935756143
+    "bnb": 18147729.42221217
    }
   },
   "pool": {
-   "usdt": 86628.74800809882,
-   "tmsr": 578618.2797969267,
-   "price": 0.149717,
+   "usdt": 86611.97310549037,
+   "tmsr": 578730.6267556853,
+   "price": 0.149659,
    "lpTotal": 223711.74416313964
   },
   "excluded": {
@@ -219,5 +219,5 @@
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1794920258
+ "ts": 1794922246
 }
