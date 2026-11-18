@@ -1,36 +1,36 @@
 {
  "state": {
-  "ts": 1794996101,
-  "iso": "2026-11-18T18:01:41",
-  "block": 134291881,
+  "ts": 1794998048,
+  "iso": "2026-11-18T18:34:08",
+  "block": 134296170,
   "token": {
    "owner": "0x0000000000…",
    "totalSupply": 2100000000.0,
    "balVault": 1888730000.0,
    "balDead": 0.0,
    "balInitRec": 2e-17,
-   "twapPrice": null,
    "dailyBasePrice": null,
-   "baseSellTaxBps": null,
-   "buyEnabled": null,
    "waitingFeeTmsr": null,
-   "buyTaxBps": null
+   "buyEnabled": null,
+   "twapPrice": null,
+   "buyTaxBps": null,
+   "baseSellTaxBps": null
   },
   "light": {
-   "balTmsr": 88549.31517992479,
-   "balUsdt": 21523.442665068404,
    "salePrice": null,
    "purchaseUnit": null,
-   "burnBps": null,
-   "salePaused": null,
+   "balTmsr": 89037.3216822785,
+   "balUsdt": 21449.840659727746,
    "totalOrders": null,
-   "treasuryPaused": null
+   "salePaused": null,
+   "treasuryPaused": null,
+   "burnBps": null
   },
   "turbo": {
    "balTmsr": 10000.0,
    "lockDuration": null,
-   "lockBps": null,
    "totalReservedTmsr": null,
+   "lockBps": null,
    "availableTmsr": null
   },
   "vault": {
@@ -40,24 +40,24 @@
    "balTmsr": 24891.249481
   },
   "pair": {
-   "reserveUsdt": 86802.94940482946,
-   "reserveTmsr": 577464.0313783751,
-   "dexPrice": 0.150317,
+   "reserveUsdt": 86876.55141017011,
+   "reserveTmsr": 576976.0248760214,
+   "dexPrice": 0.150572,
    "lpTotal": 223711.74416313967,
    "lpInitRec": 223609.69381616925,
    "lpLockedPct": 99.95
   },
   "metrics": {
-   "dexPrice": 0.150317,
+   "dexPrice": 0.150572,
    "lpLockedPct": 99.95,
    "vaultSharePct": 89.94,
    "health": 28
   }
  },
  "all": {
-  "ts": 1794996101,
-  "iso": "2026-11-18 18:01:41",
-  "block": 134291881,
+  "ts": 1794998048,
+  "iso": "2026-11-18 18:34:08",
+  "block": 134296171,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -70,8 +70,8 @@
    "0x651f0EF421EfDe887dF55f05b2C243008CdF5B49": {
     "name": "light合约",
     "address": "0x651f0EF421EfDe887dF55f05b2C243008CdF5B49",
-    "tmsr": 88549.31517992479,
-    "usdt": 21523.442665068404,
+    "tmsr": 89037.32168227852,
+    "usdt": 21449.840659727746,
     "lp": 42.97838359401156,
     "bnb": 0.0
    },
@@ -174,8 +174,8 @@
    "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371": {
     "name": "DEX pair",
     "address": "0xb8a80acfb85d7e162d5b96f59ff2177f6d131371",
-    "tmsr": 577464.0313783751,
-    "usdt": 86802.94940482946,
+    "tmsr": 576976.0248760214,
+    "usdt": 86876.55141017011,
     "lp": 0.0,
     "bnb": 0.0
    },
@@ -183,15 +183,15 @@
     "name": "死地址",
     "address": "0x000000000000000000000000000000000000dEaD",
     "tmsr": 0.0,
-    "usdt": 312372.05453097774,
+    "usdt": 312372.05456983607,
     "lp": 0.0,
-    "bnb": 18147775.613809634
+    "bnb": 18147777.19519303
    }
   },
   "pool": {
-   "usdt": 86802.94940482946,
-   "tmsr": 577464.0313783751,
-   "price": 0.150317,
+   "usdt": 86876.55141017011,
+   "tmsr": 576976.0248760214,
+   "price": 0.150572,
    "lpTotal": 223711.74416313964
   },
   "excluded": {
@@ -219,5 +219,5 @@
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1794996154
+ "ts": 1794998105
 }
