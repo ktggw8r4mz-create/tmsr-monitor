@@ -1,29 +1,29 @@
 {
  "state": {
-  "ts": 1795290028,
-  "iso": "2026-11-22T03:40:28",
-  "block": 134944761,
+  "ts": 1795291873,
+  "iso": "2026-11-22T04:11:13",
+  "block": 134948859,
   "token": {
    "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
    "balVault": 1888730000.0,
    "balDead": 0.0,
    "balInitRec": 2e-17,
-   "baseSellTaxBps": null,
+   "buyTaxBps": null,
    "waitingFeeTmsr": null,
    "dailyBasePrice": null,
-   "buyEnabled": null,
-   "buyTaxBps": null,
-   "twapPrice": null
+   "twapPrice": null,
+   "baseSellTaxBps": null,
+   "buyEnabled": null
   },
   "light": {
    "balTmsr": 99846.88515606706,
-   "salePrice": null,
    "balUsdt": 16554.796405861838,
+   "salePrice": null,
    "purchaseUnit": null,
    "burnBps": null,
-   "treasuryPaused": null,
    "totalOrders": null,
+   "treasuryPaused": null,
    "salePaused": null
   },
   "turbo": {
@@ -37,7 +37,7 @@
    "balTmsr": 1888730000.0
   },
   "withdraw": {
-   "balTmsr": 11785.579824999999
+   "balTmsr": 11754.012031
   },
   "pair": {
    "reserveUsdt": 91518.54505229126,
@@ -55,9 +55,9 @@
   }
  },
  "all": {
-  "ts": 1795290028,
-  "iso": "2026-11-22 03:40:28",
-  "block": 134944761,
+  "ts": 1795291873,
+  "iso": "2026-11-22 04:11:13",
+  "block": 134948858,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -94,7 +94,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 11785.579825,
+    "tmsr": 11754.012031,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -183,9 +183,9 @@
     "name": "死地址",
     "address": "0x000000000000000000000000000000000000dEaD",
     "tmsr": 0.0,
-    "usdt": 312457.1030524913,
+    "usdt": 312457.81856134936,
     "lp": 0.0,
-    "bnb": 18147980.05368757
+    "bnb": 18147980.63480161
    }
   },
   "pool": {
@@ -217,14 +217,14 @@
    "count": 1,
    "sample": [
     {
-     "block": "0x80b14a8",
+     "block": "0x80b2667",
      "from": "0x99686192b091c212e613652dbfe3b003bce7722a",
-     "to": "0xdfc14dd60d087e617c86d18c409dd61b239ee189",
+     "to": "0x6fac600ea059e397e855cd8b9ad6f8c75a415e29",
      "data": "0x000000000000000000"
     }
    ],
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1795290069
+ "ts": 1795291912
 }
