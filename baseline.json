@@ -1,29 +1,29 @@
 {
  "state": {
-  "ts": 1795268706,
-  "iso": "2026-11-21T21:45:06",
-  "block": 134897401,
+  "ts": 1795270586,
+  "iso": "2026-11-21T22:16:26",
+  "block": 134901576,
   "token": {
-   "owner": "0x0000000000…",
    "totalSupply": 2100000000.0,
-   "balDead": 0.0,
+   "owner": "0x0000000000…",
    "balVault": 1888730000.0,
+   "balDead": 0.0,
    "balInitRec": 2e-17,
-   "buyEnabled": null,
+   "waitingFeeTmsr": null,
+   "twapPrice": null,
    "buyTaxBps": null,
    "dailyBasePrice": null,
    "baseSellTaxBps": null,
-   "waitingFeeTmsr": null,
-   "twapPrice": null
+   "buyEnabled": null
   },
   "light": {
-   "purchaseUnit": null,
    "salePrice": null,
    "balTmsr": 98188.18675393063,
+   "purchaseUnit": null,
    "balUsdt": 16831.767720546424,
    "burnBps": null,
-   "totalOrders": null,
    "salePaused": null,
+   "totalOrders": null,
    "treasuryPaused": null
   },
   "turbo": {
@@ -37,7 +37,7 @@
    "balTmsr": 1888730000.0
   },
   "withdraw": {
-   "balTmsr": 11897.119363
+   "balTmsr": 11884.492249
   },
   "pair": {
    "reserveUsdt": 91241.57373760668,
@@ -55,9 +55,9 @@
   }
  },
  "all": {
-  "ts": 1795268706,
-  "iso": "2026-11-21 21:45:06",
-  "block": 134897397,
+  "ts": 1795270586,
+  "iso": "2026-11-21 22:16:26",
+  "block": 134901574,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -94,7 +94,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 11897.119363,
+    "tmsr": 11884.492249,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -185,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 312457.1030524913,
     "lp": 0.0,
-    "bnb": 18147969.22183506
+    "bnb": 18147970.867090873
    }
   },
   "pool": {
@@ -216,8 +216,8 @@
    "ok": true,
    "count": 0,
    "sample": [],
-   "error": "HTTP Error 429: Too Many Requests"
+   "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
   }
  },
- "ts": 1795268781
+ "ts": 1795270675
 }
