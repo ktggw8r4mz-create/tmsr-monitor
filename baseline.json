@@ -1,55 +1,63 @@
 {
  "state": {
-  "ts": 1795520435,
-  "iso": "2026-11-24T19:40:35",
-  "block": null,
+  "ts": 1795522463,
+  "iso": "2026-11-24T20:14:23",
+  "block": 135461028,
   "token": {
-   "owner": "0x0000000000…",
    "totalSupply": 2100000000.0,
+   "owner": "0x0000000000…",
    "balDead": 0.0,
-   "dailyBasePrice": null,
-   "buyTaxBps": null,
-   "buyEnabled": null,
-   "waitingFeeTmsr": null,
-   "twapPrice": null,
+   "balVault": 1888730000.0,
+   "balInitRec": 2e-17,
    "baseSellTaxBps": null,
-   "balVault": null,
-   "balInitRec": null
+   "twapPrice": null,
+   "buyEnabled": null,
+   "dailyBasePrice": null,
+   "waitingFeeTmsr": null,
+   "buyTaxBps": null
   },
   "light": {
+   "balTmsr": 91309.4499835755,
+   "balUsdt": 14594.81115933116,
    "purchaseUnit": null,
    "salePrice": null,
-   "salePaused": null,
+   "totalOrders": null,
    "burnBps": null,
    "treasuryPaused": null,
-   "balTmsr": 91309.4499835755,
-   "totalOrders": null,
-   "balUsdt": 14594.81115933116
+   "salePaused": null
   },
   "turbo": {
-   "availableTmsr": null,
+   "balTmsr": 10000.0,
    "lockDuration": null,
    "lockBps": null,
    "totalReservedTmsr": null,
-   "balTmsr": null
+   "availableTmsr": null
   },
   "vault": {
-   "balTmsr": null
+   "balTmsr": 1888730000.0
   },
   "withdraw": {
-   "balTmsr": null
+   "balTmsr": 16150.447697
   },
   "pair": {
-   "error": "{'code': -32001, 'message': \"You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing\"}"
+   "reserveUsdt": 93400.32593109476,
+   "reserveTmsr": 536782.8005073993,
+   "dexPrice": 0.174,
+   "lpTotal": 223711.74416313967,
+   "lpInitRec": 223609.69381616925,
+   "lpLockedPct": 99.95
   },
   "metrics": {
-   "health": null
+   "dexPrice": 0.174,
+   "lpLockedPct": 99.95,
+   "vaultSharePct": 89.94,
+   "health": 28
   }
  },
  "all": {
-  "ts": 1795520435,
-  "iso": "2026-11-24 19:40:35",
-  "block": 135456534,
+  "ts": 1795522463,
+  "iso": "2026-11-24 20:14:23",
+  "block": 135461028,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -86,7 +94,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 17012.951543,
+    "tmsr": 16150.447697,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -177,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 313590.4322959375,
     "lp": 0.0,
-    "bnb": 18148157.14726308
+    "bnb": 18148158.386089373
    }
   },
   "pool": {
@@ -205,11 +213,11 @@
    "死地址": null
   },
   "logs": {
-   "ok": false,
+   "ok": true,
    "count": 0,
    "sample": [],
-   "error": "HTTP Error 403: Forbidden"
+   "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1795520652
+ "ts": 1795522589
 }
