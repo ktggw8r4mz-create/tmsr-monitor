@@ -1,35 +1,35 @@
 {
  "state": {
-  "ts": 1795544744,
-  "iso": "2026-11-25T02:25:44",
-  "block": 135510534,
+  "ts": 1795546714,
+  "iso": "2026-11-25T02:58:34",
+  "block": 135514905,
   "token": {
-   "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
+   "balVault": 1888730000.0,
+   "totalSupply": 2100000000.0,
+   "balInitRec": 2e-17,
+   "balDead": 0.0,
    "buyEnabled": null,
-   "waitingFeeTmsr": null,
-   "baseSellTaxBps": null,
-   "dailyBasePrice": null,
    "twapPrice": null,
+   "baseSellTaxBps": null,
    "buyTaxBps": null,
-   "balDead": null,
-   "balVault": null,
-   "balInitRec": null
+   "dailyBasePrice": null,
+   "waitingFeeTmsr": null
   },
   "light": {
-   "purchaseUnit": null,
-   "salePaused": null,
    "salePrice": null,
+   "purchaseUnit": null,
+   "balTmsr": 92505.9169843503,
    "burnBps": null,
+   "salePaused": null,
    "totalOrders": null,
-   "balTmsr": null,
    "treasuryPaused": null,
    "balUsdt": 14385.637130191182
   },
   "turbo": {
    "lockDuration": null,
-   "totalReservedTmsr": null,
    "lockBps": null,
+   "totalReservedTmsr": null,
    "availableTmsr": null,
    "balTmsr": null
   },
@@ -43,13 +43,14 @@
    "error": "{'code': -32001, 'message': \"You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing\"}"
   },
   "metrics": {
-   "health": null
+   "vaultSharePct": 89.94,
+   "health": 28
   }
  },
  "all": {
-  "ts": 1795544744,
-  "iso": "2026-11-25 02:25:44",
-  "block": 135510537,
+  "ts": 1795546714,
+  "iso": "2026-11-25 02:58:34",
+  "block": 135514905,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -177,7 +178,7 @@
     "tmsr": 0.0,
     "usdt": 313590.44040746597,
     "lp": 0.0,
-    "bnb": 18148173.174502622
+    "bnb": 18148173.83700286
    }
   },
   "pool": {
@@ -211,5 +212,5 @@
    "error": "HTTP Error 403: Forbidden"
   }
  },
- "ts": 1795544908
+ "ts": 1795546845
 }
