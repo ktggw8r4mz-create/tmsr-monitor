@@ -1,20 +1,20 @@
 {
  "state": {
-  "ts": 1795554452,
-  "iso": "2026-11-25T05:07:32",
-  "block": 135532098,
+  "ts": 1795556298,
+  "iso": "2026-11-25T05:38:18",
+  "block": 135536199,
   "token": {
-   "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
-   "balVault": 1888730000.0,
+   "totalSupply": 2100000000.0,
    "balDead": 0.0,
+   "balVault": 1888730000.0,
    "balInitRec": 2e-17,
    "twapPrice": null,
-   "dailyBasePrice": null,
+   "baseSellTaxBps": null,
    "waitingFeeTmsr": null,
-   "buyEnabled": null,
    "buyTaxBps": null,
-   "baseSellTaxBps": null
+   "buyEnabled": null,
+   "dailyBasePrice": null
   },
   "light": {
    "balTmsr": 92505.9169843503,
@@ -55,9 +55,9 @@
   }
  },
  "all": {
-  "ts": 1795554452,
-  "iso": "2026-11-25 05:07:32",
-  "block": 135532098,
+  "ts": 1795556298,
+  "iso": "2026-11-25 05:38:18",
+  "block": 135536199,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -185,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 313590.44041720696,
     "lp": 0.0,
-    "bnb": 18148176.355080266
+    "bnb": 18148177.07461438
    }
   },
   "pool": {
@@ -219,5 +219,5 @@
    "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1795554492
+ "ts": 1795556338
 }
