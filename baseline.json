@@ -1,63 +1,55 @@
 {
  "state": {
-  "ts": 1795530446,
-  "iso": "2026-11-24T22:27:26",
-  "block": 135478769,
+  "ts": 1795532341,
+  "iso": "2026-11-24T22:59:01",
+  "block": 135482988,
   "token": {
-   "totalSupply": 2100000000.0,
-   "owner": "0x0000000000…",
-   "balDead": 0.0,
-   "balInitRec": 2e-17,
-   "balVault": 1888730000.0,
-   "buyTaxBps": null,
-   "buyEnabled": null,
    "waitingFeeTmsr": null,
-   "dailyBasePrice": null,
    "twapPrice": null,
-   "baseSellTaxBps": null
+   "buyEnabled": null,
+   "dailyBasePrice": null,
+   "totalSupply": null,
+   "buyTaxBps": null,
+   "owner": null,
+   "baseSellTaxBps": null,
+   "balVault": 1888730000.0,
+   "balInitRec": null,
+   "balDead": null
   },
   "light": {
-   "balTmsr": 92505.9169843503,
-   "purchaseUnit": null,
-   "balUsdt": 14385.637130191182,
    "salePrice": null,
    "totalOrders": null,
+   "purchaseUnit": null,
+   "salePaused": null,
    "burnBps": null,
+   "balTmsr": null,
    "treasuryPaused": null,
-   "salePaused": null
+   "balUsdt": null
   },
   "turbo": {
-   "balTmsr": 10000.0,
-   "lockBps": null,
    "lockDuration": null,
-   "availableTmsr": null,
-   "totalReservedTmsr": null
+   "lockBps": null,
+   "balTmsr": null,
+   "totalReservedTmsr": null,
+   "availableTmsr": null
   },
   "vault": {
-   "balTmsr": 1888730000.0
+   "balTmsr": null
   },
   "withdraw": {
-   "balTmsr": 16078.894034
+   "balTmsr": null
   },
   "pair": {
-   "reserveUsdt": 93609.49996023475,
-   "reserveTmsr": 535586.3335066244,
-   "dexPrice": 0.174779,
-   "lpTotal": 223711.74416313967,
-   "lpInitRec": 223609.69381616925,
-   "lpLockedPct": 99.95
+   "error": "{'code': -32001, 'message': \"You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing\"}"
   },
   "metrics": {
-   "dexPrice": 0.174779,
-   "lpLockedPct": 99.95,
-   "vaultSharePct": 89.94,
-   "health": 28
+   "health": null
   }
  },
  "all": {
-  "ts": 1795530446,
-  "iso": "2026-11-24 22:27:26",
-  "block": 135478764,
+  "ts": 1795532341,
+  "iso": "2026-11-24 22:59:01",
+  "block": 135482988,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -78,7 +70,7 @@
    "0xa5D430d8D33D2Ed95D4ce1A92b42E03EeC83bD96": {
     "name": "turbo合约",
     "address": "0xa5D430d8D33D2Ed95D4ce1A92b42E03EeC83bD96",
-    "tmsr": 10000.0,
+    "tmsr": null,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -94,7 +86,7 @@
    "0x99686192b091c212E613652DBfe3b003Bce7722A": {
     "name": "withdraw合约",
     "address": "0x99686192b091c212E613652DBfe3b003Bce7722A",
-    "tmsr": 16078.894034,
+    "tmsr": 16047.32624,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.0
@@ -102,7 +94,7 @@
    "0xb566b5aea04a35962fecf0e439ec1f66205c4884": {
     "name": "token owner/tradingController",
     "address": "0xb566b5aea04a35962fecf0e439ec1f66205c4884",
-    "tmsr": 0.0,
+    "tmsr": null,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.029993129565
@@ -158,7 +150,7 @@
    "0x91fc60e038775d156bb9c1f897736e4e38a1d626": {
     "name": "withdraw owner",
     "address": "0x91fc60e038775d156bb9c1f897736e4e38a1d626",
-    "tmsr": 0.0,
+    "tmsr": null,
     "usdt": 0.0,
     "lp": 0.0,
     "bnb": 0.03
@@ -183,16 +175,16 @@
     "name": "死地址",
     "address": "0x000000000000000000000000000000000000dEaD",
     "tmsr": 0.0,
-    "usdt": 313590.4395301173,
+    "usdt": 313590.4395448531,
     "lp": 0.0,
-    "bnb": 18148165.208212625
+    "bnb": 18148166.80057956
    }
   },
   "pool": {
    "usdt": 93609.49996023475,
    "tmsr": 535586.3335066244,
    "price": 0.174779,
-   "lpTotal": 223711.74416313964
+   "lpTotal": 223711.74416313967
   },
   "excluded": {
    "token合约": null,
@@ -213,11 +205,11 @@
    "死地址": null
   },
   "logs": {
-   "ok": true,
+   "ok": false,
    "count": 0,
    "sample": [],
-   "error": "HTTP Error 429: Too Many Requests"
+   "error": "HTTP Error 403: Forbidden"
   }
  },
- "ts": 1795530535
+ "ts": 1795532651
 }
