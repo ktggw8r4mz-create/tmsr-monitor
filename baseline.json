@@ -1,55 +1,56 @@
 {
  "state": {
-  "ts": 1795589520,
-  "iso": "2026-11-25T14:52:00",
-  "block": null,
+  "ts": 1795591524,
+  "iso": "2026-11-25T15:25:24",
+  "block": 135614461,
   "token": {
    "totalSupply": 2100000000.0,
-   "buyEnabled": null,
-   "owner": null,
-   "baseSellTaxBps": null,
-   "dailyBasePrice": null,
-   "waitingFeeTmsr": null,
-   "balVault": null,
-   "buyTaxBps": null,
-   "twapPrice": null,
+   "owner": "0x0000000000…",
+   "balVault": 1888730000.0,
+   "balInitRec": 2e-17,
    "balDead": 0.0,
-   "balInitRec": null
+   "twapPrice": null,
+   "waitingFeeTmsr": null,
+   "baseSellTaxBps": null,
+   "buyEnabled": null,
+   "buyTaxBps": null,
+   "dailyBasePrice": null
   },
   "light": {
-   "burnBps": null,
-   "salePaused": null,
    "purchaseUnit": null,
-   "salePrice": null,
    "totalOrders": null,
-   "balTmsr": null,
+   "burnBps": null,
+   "salePrice": null,
+   "balUsdt": 13650.550944448309,
+   "salePaused": null,
    "treasuryPaused": null,
-   "balUsdt": null
+   "balTmsr": null
   },
   "turbo": {
    "balTmsr": 10000.0,
-   "lockBps": null,
    "totalReservedTmsr": null,
    "availableTmsr": null,
+   "lockBps": null,
    "lockDuration": null
   },
   "vault": {
-   "balTmsr": null
+   "balTmsr": 1888730000.0
   },
   "withdraw": {
-   "balTmsr": null
+   "balTmsr": 13501.531952
   },
   "pair": {
    "error": "{'code': -32001, 'message': \"You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing\"}"
   },
   "metrics": {
-   "health": null
+   "vaultSharePct": 89.94,
+   "health": 28
   }
  },
  "all": {
-  "ts": 1795589520,
-  "iso": "2026-11-25 14:52:00",
-  "block": 135610013,
+  "ts": 1795591524,
+  "iso": "2026-11-25 15:25:24",
+  "block": 135614463,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -177,7 +178,7 @@
     "tmsr": 0.0,
     "usdt": 313590.4408297875,
     "lp": 0.0,
-    "bnb": 18148190.51506616
+    "bnb": 18148191.69096694
    }
   },
   "pool": {
@@ -211,5 +212,5 @@
    "error": "HTTP Error 403: Forbidden"
   }
  },
- "ts": 1795589717
+ "ts": 1795591641
 }
