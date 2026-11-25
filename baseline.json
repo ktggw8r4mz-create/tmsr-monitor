@@ -1,36 +1,36 @@
 {
  "state": {
-  "ts": 1795609266,
-  "iso": "2026-11-25T20:21:06",
-  "block": 135653871,
+  "ts": 1795611353,
+  "iso": "2026-11-25T20:55:53",
+  "block": 135658510,
   "token": {
    "owner": "0x0000000000…",
-   "totalSupply": 2100000000.0,
    "balVault": 1888730000.0,
-   "balDead": 0.0,
+   "totalSupply": 2100000000.0,
+   "dailyBasePrice": null,
+   "buyTaxBps": null,
+   "baseSellTaxBps": null,
    "balInitRec": 2e-17,
    "buyEnabled": null,
-   "twapPrice": null,
-   "baseSellTaxBps": null,
-   "buyTaxBps": null,
    "waitingFeeTmsr": null,
-   "dailyBasePrice": null
+   "twapPrice": null,
+   "balDead": null
   },
   "light": {
-   "purchaseUnit": null,
    "balTmsr": 99190.28804203811,
-   "salePrice": null,
-   "burnBps": null,
-   "treasuryPaused": null,
    "balUsdt": 13208.362542142804,
+   "salePrice": null,
+   "purchaseUnit": null,
    "totalOrders": null,
-   "salePaused": null
+   "salePaused": null,
+   "burnBps": null,
+   "treasuryPaused": null
   },
   "turbo": {
-   "lockBps": null,
-   "lockDuration": null,
-   "totalReservedTmsr": null,
    "balTmsr": 10000.0,
+   "lockDuration": null,
+   "lockBps": null,
+   "totalReservedTmsr": null,
    "availableTmsr": null
   },
   "vault": {
@@ -40,17 +40,24 @@
    "balTmsr": 13345.797503000002
   },
   "pair": {
-   "error": "{'code': -32001, 'message': \"You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing\"}"
+   "reserveUsdt": 94418.2865461383,
+   "reserveTmsr": 531020.3891292758,
+   "dexPrice": 0.177805,
+   "lpTotal": 223711.74416313967,
+   "lpInitRec": 223609.69381616925,
+   "lpLockedPct": 99.95
   },
   "metrics": {
+   "dexPrice": 0.177805,
+   "lpLockedPct": 99.95,
    "vaultSharePct": 89.94,
    "health": 28
   }
  },
  "all": {
-  "ts": 1795609266,
-  "iso": "2026-11-25 20:21:06",
-  "block": 135653873,
+  "ts": 1795611353,
+  "iso": "2026-11-25 20:55:53",
+  "block": 135658516,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -178,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 313595.8408575181,
     "lp": 0.0,
-    "bnb": 18148202.97773129
+    "bnb": 18148204.28911537
    }
   },
   "pool": {
@@ -206,11 +213,11 @@
    "死地址": null
   },
   "logs": {
-   "ok": false,
+   "ok": true,
    "count": 0,
    "sample": [],
-   "error": "HTTP Error 403: Forbidden"
+   "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1795609415
+ "ts": 1795611469
 }
