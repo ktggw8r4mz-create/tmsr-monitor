@@ -1,56 +1,63 @@
 {
  "state": {
-  "ts": 1795785630,
-  "iso": "2026-11-27T21:20:30",
-  "block": 136045579,
+  "ts": 1795787656,
+  "iso": "2026-11-27T21:54:16",
+  "block": 136050063,
   "token": {
-   "totalSupply": 2100000000.0,
    "owner": "0x0000000000…",
+   "totalSupply": 2100000000.0,
    "balVault": 1888730000.0,
+   "balInitRec": 2e-17,
+   "balDead": 0.0,
    "waitingFeeTmsr": null,
    "twapPrice": null,
    "buyTaxBps": null,
    "baseSellTaxBps": null,
    "buyEnabled": null,
-   "dailyBasePrice": null,
-   "balDead": 0.0,
-   "balInitRec": null
+   "dailyBasePrice": null
   },
   "light": {
    "balTmsr": 85121.40439747702,
    "salePrice": null,
    "purchaseUnit": null,
+   "balUsdt": 12139.747282138771,
    "treasuryPaused": null,
-   "salePaused": null,
    "burnBps": null,
    "totalOrders": null,
-   "balUsdt": null
+   "salePaused": null
   },
   "turbo": {
    "balTmsr": 10000.0,
-   "lockDuration": null,
    "lockBps": null,
+   "totalReservedTmsr": null,
    "availableTmsr": null,
-   "totalReservedTmsr": null
+   "lockDuration": null
   },
   "vault": {
-   "balTmsr": null
+   "balTmsr": 1888730000.0
   },
   "withdraw": {
-   "balTmsr": null
+   "balTmsr": 24691.143669999998
   },
   "pair": {
-   "error": "{'code': -32001, 'message': \"You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing\"}"
+   "reserveUsdt": 95445.87785275663,
+   "reserveTmsr": 525318.6577202085,
+   "dexPrice": 0.181691,
+   "lpTotal": 223711.74416313967,
+   "lpInitRec": 223609.69381616925,
+   "lpLockedPct": 99.95
   },
   "metrics": {
+   "dexPrice": 0.181691,
+   "lpLockedPct": 99.95,
    "vaultSharePct": 89.94,
    "health": 28
   }
  },
  "all": {
-  "ts": 1795785630,
-  "iso": "2026-11-27 21:20:30",
-  "block": 136045575,
+  "ts": 1795787656,
+  "iso": "2026-11-27 21:54:16",
+  "block": 136050067,
   "addresses": {
    "0xD8D3cD314FdBB54435A6e7CCcca1adbbdf68674F": {
     "name": "token合约",
@@ -178,7 +185,7 @@
     "tmsr": 0.0,
     "usdt": 313602.57191103755,
     "lp": 0.0,
-    "bnb": 18148315.609280262
+    "bnb": 18148316.958474327
    }
   },
   "pool": {
@@ -206,11 +213,11 @@
    "死地址": null
   },
   "logs": {
-   "ok": false,
+   "ok": true,
    "count": 0,
    "sample": [],
-   "error": "HTTP Error 403: Forbidden"
+   "error": "HTTP Error 429: Too Many Requests"
   }
  },
- "ts": 1795785847
+ "ts": 1795787777
 }
